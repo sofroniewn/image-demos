@@ -7,9 +7,9 @@ import numpy as np
 from napari import ViewerApp
 from napari.util import app_context
 
-raw = imread('data/FISH_raw.tif')
-deconvolved = imread('data/FISH_deconvolved.tif')
-spots = np.loadtxt('data/FISH_spots.csv', delimiter=',')
+raw = imread('data/smFISH/raw.tif')
+deconvolved = imread('data/smFISH/deconvolved.tif')
+spots = np.loadtxt('data/smFISH/spots.csv', delimiter=',')
 
 with app_context():
     # create an empty viewer

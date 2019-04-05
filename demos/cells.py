@@ -9,10 +9,10 @@ from napari import ViewerApp
 from napari.util import app_context
 from vispy.color import Colormap
 
-cells = imread('data/cells.tif')
+cells = imread('data/cells/cells.tif')
 cells[470:, 320:, :] = cells[470, 320, :]
-centers = np.loadtxt('data/cells_centers.csv', delimiter=',')
-shapes = np.load('data/cells_boundaries.npy')
+centers = np.loadtxt('data/cells/cells_centers.csv', delimiter=',')
+shapes = np.load('data/cells/cells_boundaries.npy')
 face_colors = ['red', 'blue', 'green', 'yellow', 'cyan', 'magenta', 'white']
 
 with app_context():
@@ -37,10 +37,10 @@ with app_context():
     nucleus.clim = [0.0, 255.0]
     nucleus.blending = 'additive'
 
-    # boundaries_layer = viewer.add_shapes(shapes, shape_type='polygon',
-    #                                      face_color=face_colors,
-    #                                      name='boundaries')
-    # boundaries_layer.visible = False
+    boundaries_layer = viewer.add_shapes(shapes, shape_type='polygon',
+                                         face_color=face_colors,
+                                         name='boundaries')
+    boundaries_layer.visible = False
 
 
     centers_layer = viewer.add_markers(centers, name='centers')

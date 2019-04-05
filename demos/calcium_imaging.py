@@ -44,12 +44,11 @@ with app_context():
     roi_layer = viewer.add_image(mask, name='roi')
     roi_layer.colormap = Colormap([(0, 0, 0, 0), (1., 0., 0., 1.)])
     roi_layer.opacity = 0.5
-    roi_layer.visible = False
 
-    # shapes_layer = viewer.add_shapes(polygons, shape_type='polygon',
-    #                                  edge_width=0, face_color='green',
-    #                                  opacity=0.5, name='neurons')
-    # shapes_layer.visible = False
+    shapes_layer = viewer.add_shapes(polygons, shape_type='polygon',
+                                     edge_width=0, face_color='green',
+                                     opacity=0.5, name='neurons')
+    shapes_layer.visible = False
 
 # polygons_edit = shapes_layer.data.to_list()
 # np.save('data/neurofinder/polygons_edit.npy', polygons_edit)

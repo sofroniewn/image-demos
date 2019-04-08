@@ -5,12 +5,11 @@ Displays an 100GB zarr file of lattice light sheet data
 import numpy as np
 from napari import ViewerApp
 from napari.util import app_context
-import dask.array as da
 from timeit import timeit
 from pandas import DataFrame
-from dask.cache import Cache
+import zarr
 
-cache = Cache(2e9)  # Leverage two gigabytes of memory
+#cache = Cache(2e9)  # Leverage two gigabytes of memory
 
 base_name = '/Users/nicholassofroniew/Documents/DATA-imaging/zarr_benchmarks/'
 
@@ -43,26 +42,26 @@ with app_context():
 
                 file_name = base_name + 'image_' + str(N) + '_chunk_' + str(c) + '.zarr'
 
-                data = da.from_zarr(file_name)
-                if loc == 'local':
-                    print('local zarr')
-                    pass
-                elif loc == 'in-memory':
-                    print('convert to in memory')
-                    data = np.asarray(data)
-                else:
-                    raise ValueError('Unrecognized location')
-
-                print(data.shape)
+                store = zarr.DirectoryStore(file_name)
 
                 for opc in opp_caching_used:
                     if opc == 'off':
-                        try:
-                            cache.unregister()
-                        except:
-                            pass
+                        data = zarr.open(store, mode='r')
                     else:
-                        cache.register()
+                        cache = zarr.LRUStoreCache(store, max_size=2**9)
+                    data = zarr.open(store, mode='r')
+
+                    if loc == 'local':
+                        print('local zarr')
+                        pass
+                    elif loc == 'in-memory':
+                        print('convert to in memory')
+                        data = np.asarray(data)
+                    else:
+                        raise ValueError('Unrecognized location')
+
+
+                    print(data.shape)
 
                     d = {'N': N, 'c': c, 'shape': data.shape, 'location': loc, 'opp_caching': opc}
 
@@ -99,4 +98,4 @@ with app_context():
 
                     df = df.append(d, ignore_index=True)
 
-    df.to_csv('data/benchmarks/zarr_3D_3.csv')
+    df.to_csv('data/benchmarks/zarr_3D_zarr_2.csv')

@@ -9,7 +9,7 @@ from napari.util import app_context
 import dask.array as da
 
 
-file_name = '/Users/nicholassofroniew/Documents/DATA-imaging/ExM/AOLLSM_m4_560nm-6.zarr'
+file_name = '/Users/nicholassofroniew/Documents/DATA-imaging/ExM/AOLLSM_m4_560nm.zarr'
 
 data = da.from_zarr(file_name)
 print(data.shape)

@@ -45,11 +45,12 @@ with app_context():
                 store = zarr.DirectoryStore(file_name)
 
                 for opc in opp_caching_used:
+
                     if opc == 'off':
                         data = zarr.open(store, mode='r')
                     else:
-                        cache = zarr.LRUStoreCache(store, max_size=2**9)
-                    data = zarr.open(store, mode='r')
+                        cache = zarr.LRUStoreCache(store, max_size=2e9)
+                        data = zarr.open(cache, mode='r')
 
                     if loc == 'local':
                         print('local zarr')

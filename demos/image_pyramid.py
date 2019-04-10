@@ -11,7 +11,7 @@ slide = OpenSlide('data/camelyon16/normal_001.tif')
 
 pyramid = ([np.asarray(slide.read_region((0, 0), i,
                        slide.level_dimensions[i])).transpose(1, 0, 2)
-                       for i in range(0, 10)])
+                       for i in range(4, 10)])
 
 with app_context():
     # create an empty viewer

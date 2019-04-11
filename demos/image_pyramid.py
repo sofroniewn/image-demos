@@ -11,9 +11,9 @@ from napari.util import app_context
 cache = Cache(2e9)  # Leverage two gigabytes of memory
 cache.register()
 
-file_name = 'data/camelyon16/normal_001.zarr'
+file_name = 'data/camelyon16/tumor_001.zarr'
 
-pyramid = [da.from_zarr(file_name + '/' + str(i)) for i in range(10)]
+pyramid = [da.from_zarr(file_name + '/' + str(i)) for i in range(3, 10)]
 
 print([p.shape[:2] for p in pyramid])
 

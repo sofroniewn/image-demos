@@ -23,5 +23,5 @@ with app_context():
 
     # add the pyramid
     layer = viewer.add_pyramid(pyramid, name='slide')
-    #shape = np.array(pyramid[0].shape[:2])
-    #viewer.camera.zoom(.1, center=-shape/2)
+    viewer.camera.rect = (-4000, 0, pyramid[0].shape[1]+8000,
+                          pyramid[0].shape[0])

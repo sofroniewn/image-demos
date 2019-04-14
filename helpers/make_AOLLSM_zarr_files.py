@@ -17,11 +17,8 @@ file_name = '/Users/nicholassofroniew/Documents/DATA-imaging/ExM/AOLLSM_m4_560nm
 
 ### For many files
 shape = (768, 1024, 201, n_files)
-z1 = zarr.open(file_name, mode='a', shape=shape, chunks=(None, None, 4, 4), dtype='f4')
+z1 = zarr.open(file_name, mode='a', shape=shape, chunks=(None, None, 1, 1), dtype='f4')
 
 for i, f in enumerate(image_files):
     print(i, n_files)
-    if i < 73:
-        pass
-    else:
-        z1[:, :, :, i] = imread(f).transpose(2, 1, 0)
+    z1[:, :, :, i] = imread(f).transpose(2, 1, 0)

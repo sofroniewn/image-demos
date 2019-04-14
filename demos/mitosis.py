@@ -7,7 +7,7 @@ from napari import ViewerApp
 from napari.util import app_context
 from vispy.color import Colormap
 
-mitosis = imread('data/mitosis.tif')
+mitosis = imread('data/mitosis/mitosis.tif')
 
 
 with app_context():

@@ -6,7 +6,7 @@ from skimage.io import imread
 from napari import ViewerApp
 from napari.util import app_context
 
-mri = imread('data/mri.tif')
+mri = imread('data/MRI/mri.tif')
 
 
 with app_context():

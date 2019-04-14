@@ -7,7 +7,7 @@ from napari import ViewerApp
 from napari.util import app_context
 import zarr
 
-file = '/Users/nicholassofroniew/Documents/DATA-imaging/ExM/AOLLSM_m4_560nm.zarr'
+file = 'data/LLSM/AOLLSM_m4_560nm.zarr'
 data = zarr.open(file, mode='r')
 print(data.shape)
 

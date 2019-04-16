@@ -3,6 +3,7 @@ Displays calcium timeseries from neurofinder
 """
 
 from skimage.io import imread
+from skimage.measure import label
 import numpy as np
 from napari import ViewerApp
 from napari.util import app_context
@@ -41,14 +42,14 @@ with app_context():
     centers_layer.opacity = 0.5
     centers_layer.visible = False
 
-    roi_layer = viewer.add_image(mask, name='roi')
-    roi_layer.colormap = Colormap([(0, 0, 0, 0), (1., 0., 0., 1.)])
-    roi_layer.opacity = 0.5
-
     shapes_layer = viewer.add_shapes(polygons, shape_type='polygon',
                                      edge_width=0, face_color='green',
                                      opacity=0.5, name='neurons')
     shapes_layer.visible = False
+    
+    labels = label(mask)
+    labels_layer = viewer.add_labels(labels, name='rois')
+
 
 # polygons_edit = shapes_layer.data.to_list()
 # np.save('data/neurofinder/polygons_edit.npy', polygons_edit)

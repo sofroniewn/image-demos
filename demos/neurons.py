@@ -6,9 +6,11 @@ from skimage.io import imread
 import numpy as np
 from napari import ViewerApp
 from napari.util import app_context
+from skimage.measure import label
 
 mean = imread('data/neurofinder/mean.tif')
 polygons = np.load('data/neurofinder/polygons.npy')
+mask = imread('data/neurofinder/mask.tif')
 
 with app_context():
     # create an empty viewer
@@ -21,3 +23,5 @@ with app_context():
     shapes_layer = viewer.add_shapes(polygons, shape_type='polygon',
                                      edge_width=0, face_color='green',
                                      opacity=0.5, name='neurons')
+    labels = label(mask)
+    labels_layer = viewer.add_labels(labels, name='rois')

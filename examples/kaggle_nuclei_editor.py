@@ -120,6 +120,18 @@ with app_context():
         label = viewer.layers[1].selected_label
         viewer.layers[1].selected_label = label + 1
 
+    def decrement_label(viewer):
+        """Decrements current label
+        """
+        label = viewer.layers[1].selected_label
+        if label > 0:
+            viewer.layers[1].selected_label = label - 1
+
+    def background_label(viewer):
+        """Set current label to background
+        """
+        viewer.layers[1].selected_label = 0
+
     def max_label(viewer):
         """Sets label to max label in visible slice
         """
@@ -127,5 +139,7 @@ with app_context():
         viewer.layers[1].selected_label = label + 1
 
     custom_key_bindings = {'s': save, 'r': revert, 'n': next, 'b': previous,
-                           'i': increment_label, 'm': max_label}
+                           'i': increment_label, 'm': max_label,
+                           'd': decrement_label, 't': background_label}
+
     viewer.key_bindings = custom_key_bindings

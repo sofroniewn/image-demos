@@ -52,6 +52,6 @@ with app_context():
     labels_layer = viewer.add_labels(labels, name='annotations')
     labels_layer.n_dimensional = False
 
-labels = labels_layer._raw_image
+labels = labels_layer.image
 imsave('data/allen_cell/labels.tif', labels.astype('uint32'), plugin='tifffile',
        photometric='minisblack')

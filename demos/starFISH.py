@@ -11,12 +11,14 @@ raw = imread('data/smFISH/raw.tif')
 deconvolved = imread('data/smFISH/deconvolved.tif')
 spots = np.loadtxt('data/smFISH/spots.csv', delimiter=',')
 
+print(raw.shape)
+
 with app_context():
     # create an empty viewer
     viewer = ViewerApp()
 
     # add the raw images
-    raw_layer = viewer.add_image(raw.transpose(2, 1, 0), name='raw')
+    raw_layer = viewer.add_image(raw.transpose(2, 1, 0), name='images')
     raw_layer.colormap = 'gray'
     raw_layer.clim = (140.0, 1300.0)
 

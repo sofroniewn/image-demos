@@ -6,6 +6,9 @@ import numpy as np
 import h5py
 from napari import ViewerApp
 from napari.util import app_context
+from timeit import timeit
+from cProfile import Profile
+pr = Profile()
 
 filename = 'data/CREMI/sample_A_20160501.hdf'
 data = h5py.File(filename,'r')
@@ -27,10 +30,10 @@ with app_context():
     raw_layer.colormap = 'gray'
 
     neuron_labels_layer = viewer.add_labels(neuron_labels.transpose(1, 2, 0),
-                                            opacity=0.4, name='neurons')
+                                            opacity=0.4, name='neurons', num_colors=300)
 
     cleft_labels_layer = viewer.add_labels(cleft_labels.transpose(1, 2, 0),
-                                           opacity=0.4, name='clefts')
+                                           opacity=0.4, name='clefts', num_colors=10)
 
     pre_layer = viewer.add_markers(pres[:, [2, 1, 0]], face_color='cyan',
                                    edge_color='cyan', size=[10, 10, 4],
@@ -39,3 +42,36 @@ with app_context():
     post_layer = viewer.add_markers(posts[:, [2, 1, 0]], face_color='magenta',
                                     edge_color='magenta', size=[10, 10, 4],
                                     n_dimensional=True, name='postsynaptic')
+
+
+    # For profiling code
+    # update_cmd = 'layer.refresh()'
+
+    # glbls = {'layer': neuron_labels_layer}
+    # result = pr.runctx(update_cmd, glbls, None)
+    # stats = result.print_stats(sort='time')
+    # print(stats)
+    # result = timeit(update_cmd, number=1, globals=glbls)
+    # print(result)
+    # glbls = {'layer': neuron_labels_layer}
+    # result = timeit(update_cmd, number=1, globals=glbls)
+    # print(result)
+    # glbls = {'layer': neuron_labels_layer}
+    # result = timeit(update_cmd, number=1, globals=glbls)
+    # print(result)
+    # glbls = {'layer': neuron_labels_layer}
+    # result = timeit(update_cmd, number=1, globals=glbls)
+    # print(result)
+
+    # glbls = {'layer': raw_layer}
+    # result = timeit(update_cmd, number=1, globals=glbls)
+    # print(result)
+    # glbls = {'layer': raw_layer}
+    # result = timeit(update_cmd, number=1, globals=glbls)
+    # print(result)
+    # glbls = {'layer': raw_layer}
+    # result = timeit(update_cmd, number=1, globals=glbls)
+    # print(result)
+    # glbls = {'layer': raw_layer}
+    # result = timeit(update_cmd, number=1, globals=glbls)
+    # print(result)

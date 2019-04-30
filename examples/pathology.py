@@ -18,8 +18,8 @@ pyramid = [da.from_zarr(file_name + '/' + str(i)) for i in range(10)]
 tree = ET.parse('data/camelyon16/lesion_annotations/tumor_001.xml')
 root = tree.getroot()
 
-shape_1 = np.array([[float(c.attrib['Y']), float(c.attrib['X'])] for c in root[0][0][0]])
-shape_2 = np.array([[float(c.attrib['Y']), float(c.attrib['X'])] for c in root[0][1][0]])
+shape_1 = np.array([[float(c.attrib['X']), float(c.attrib['Y'])] for c in root[0][0][0]])
+shape_2 = np.array([[float(c.attrib['X']), float(c.attrib['Y'])] for c in root[0][1][0]])
 tumors = [shape_1, shape_2]
 
 print([p.shape[:2] for p in pyramid])

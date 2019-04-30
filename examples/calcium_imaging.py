@@ -14,15 +14,14 @@ mean = imread('data/neurofinder/mean.tif')
 mask = imread('data/neurofinder/mask.tif')
 localcorr = imread('data/neurofinder/localcorr.tif')
 centers = np.loadtxt("data/neurofinder/centers.csv", delimiter=",")
-centers = centers[:, [1, 0]]
-polygons = np.load('data/neurofinder/polygons_edit.npy')[0]
+polygons = np.load('data/neurofinder/polygons_edit.npy')
 
 with app_context():
     # create an empty viewer
     viewer = ViewerApp()
 
     # add the timeseries
-    movie_layer = viewer.add_image(movie.transpose(1, 2, 0), name='timeseries')
+    movie_layer = viewer.add_image(movie, name='timeseries')
     movie_layer.clim = (0.0, 600.0)
     movie_layer.colormap = 'gray'
 
@@ -46,10 +45,9 @@ with app_context():
                                      edge_width=0, face_color='green',
                                      opacity=0.5, name='neurons')
     shapes_layer.visible = False
-    
+
     labels = label(mask)
     labels_layer = viewer.add_labels(labels, name='rois')
-
 
 # polygons_edit = shapes_layer.data.to_list()
 # np.save('data/neurofinder/polygons_edit.npy', polygons_edit)

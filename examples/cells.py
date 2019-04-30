@@ -51,7 +51,7 @@ with app_context():
     centers_layer.visible = False
 
 # centers = centers_layer.data
-# np.savetxt('data/cells_centers.csv', centers, delimiter=',')
-
-# shapes, types = boundaries_layer.data.to_list()
-# np.save('data/cells_boundaries.npy', shapes)
+# np.savetxt('data/cells/cells_centers.csv', centers, delimiter=',')
+#
+# shapes = boundaries_layer.data.to_list()
+# np.save('data/cells/cells_boundaries.npy', shapes)

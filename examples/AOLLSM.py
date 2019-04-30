@@ -7,8 +7,8 @@ from napari import ViewerApp
 from napari.util import app_context
 import zarr
 
-file = 'data/LLSM/AOLLSM_m4_560nm.zarr'
-data = zarr.open(file, mode='r')
+file_name = 'data/LLSM/AOLLSM_m4_560nm.zarr'
+data = zarr.open(file_name, mode='r')
 print(data.shape)
 
 clim_range = [0, 150_000]

@@ -18,16 +18,16 @@ with app_context():
     viewer = ViewerApp()
 
     # add the raw images
-    raw_layer = viewer.add_image(raw.transpose(2, 1, 0), name='images')
+    raw_layer = viewer.add_image(raw, name='images')
     raw_layer.colormap = 'gray'
     raw_layer.clim = (140.0, 1300.0)
 
-    # decon_layer = viewer.add_image(deconvolved.transpose(2, 1, 0),
-    #                                name='deconvolved')
-    # decon_layer.colormap = 'gray'
-    # decon_layer.clim = (0.0, 0.2)
+    decon_layer = viewer.add_image(deconvolved, name='deconvolved')
+    decon_layer.colormap = 'gray'
+    decon_layer.clim = (0.0, 0.2)
+    decon_layer.visible = False
 
-    spots_layer = viewer.add_markers(spots[:, [1, 2, 0]], face_color='red',
+    spots_layer = viewer.add_markers(spots, face_color='red',
                                      edge_color='red', symbol='ring', size=8,
                                      n_dimensional=True, name='spots')
     spots_layer.opacity = 0.5

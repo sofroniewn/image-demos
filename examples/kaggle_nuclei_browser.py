@@ -13,8 +13,8 @@ cache.register()
 
 base_name = 'data/kaggle-nuclei/fixes/stage1_train/*'
 
-images = imread(base_name + '/images/image_gray.tif').transpose(1, 2, 0)
-labels = imread(base_name + '/labels/label.tif').transpose(1, 2, 0)
+images = imread(base_name + '/images/image_gray.tif')
+labels = imread(base_name + '/labels/label.tif')
 
 print(images.shape)
 

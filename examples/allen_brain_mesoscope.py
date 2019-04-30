@@ -8,8 +8,11 @@ from glob import glob
 from napari import ViewerApp
 from napari.util import app_context
 
-base_name = '/Users/nicholassofroniew/Documents/DATA-imaging/allen_brain/natalia/0620_Slc_2x4'
-files = glob(base_name + '/*.tif')
+base_name = 'data/allen_brain/natalia'
+
+experiment = '/0620_Slc_2x4'
+# experiment = '/0622_Vip_4x2'
+files = glob(base_name + experiment + '/*.tif')
 
 slices = [imread(f) for f in files]
 
@@ -22,10 +25,10 @@ with app_context():
 
     # add the layers
     for i, im in enumerate(slices):
-        name = files[i][-10:]
-        viewer.add_image(im.transpose(1, 2, 0), name=name)
+        name = files[i][-10:-4]
+        viewer.add_image(im, name=name)
         viewer.layers[i].colormap = 'gray'
-        viewer.layers[i].clim = [0.0, 50.0]
-        viewer.layers[i].clim_range = [0.0, 150.0]
+        viewer.layers[i].clim = [0.0, 40.0]
+        viewer.layers[i].clim_range = [0.0, 100.0]
         offset = np.array([i%4, i//4])
         viewer.layers[i].translate = offset*shape

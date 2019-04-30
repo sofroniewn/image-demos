@@ -15,15 +15,13 @@ with app_context():
     viewer = ViewerApp()
 
     # add the first channel to a red channel
-    red = viewer.add_image(mitosis[:, :, 0, :, :].transpose(3, 2, 1, 0),
-                           name='red')
+    red = viewer.add_image(mitosis[:, :, 0, :, :], name='red')
     red.colormap = Colormap([(0, 0, 0, 1), (1., 0., 0., 1.)])
     red.clim = (1500.0, 15000.0)
     red.blending = 'additive'
 
     # add the first channel to a green channel
-    red = viewer.add_image(mitosis[:, :, 1, :, :].transpose(3, 2, 1, 0),
-                                name='green')
+    red = viewer.add_image(mitosis[:, :, 1, :, :], name='green')
     red.colormap = Colormap([(0, 0, 0, 1), (0., 1., 0., 1.)])
     red.clim = (1500.0, 15000.0)
     red.blending = 'additive'

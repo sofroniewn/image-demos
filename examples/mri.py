@@ -14,5 +14,5 @@ with app_context():
     viewer = ViewerApp()
 
     # add the mri
-    layer = viewer.add_image(mri.transpose(1, 0, 2), name='mri')
+    layer = viewer.add_image(mri, name='mri')
     layer.colormap = 'gray'

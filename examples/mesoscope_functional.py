@@ -18,7 +18,7 @@ with app_context():
     viewer = ViewerApp()
 
     # add the timeseries
-    movie_layer = viewer.add_image(movie.transpose(1, 2, 0), name='timeseries')
+    movie_layer = viewer.add_image(movie, name='timeseries')
     movie_layer.colormap = 'gray'
 
     # add the mean image

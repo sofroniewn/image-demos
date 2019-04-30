@@ -6,7 +6,7 @@ from skimage.io import imread
 from napari import ViewerApp
 from napari.util import app_context
 
-stack = imread('data/mesoscope/anatomical/volume_lowres.tif')
+stack = imread('data/mesoscope/anatomical/volume_highres.tif')
 
 
 with app_context():
@@ -14,6 +14,7 @@ with app_context():
     viewer = ViewerApp()
 
     # add the image
-    layer = viewer.add_image(stack.transpose(1, 2, 0), name='stack')
-    layer.clim = (0.0, 1500.0)
+    layer = viewer.add_image(stack,
+    name='stack')
+    layer.clim = (0.0, 2500.0)
     layer.colormap = 'gray'

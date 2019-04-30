@@ -25,10 +25,10 @@ with app_context():
     viewer = ViewerApp()
 
     # add the images
-    clean_layer = viewer.add_image(clean.transpose(1, 2, 0), name='clean')
+    clean_layer = viewer.add_image(clean, name='clean')
     clean_layer.colormap = 'gray'
 
-    noisy_layer = viewer.add_image(noisy.transpose(1, 2, 0), name='noisy')
+    noisy_layer = viewer.add_image(noisy, name='noisy')
     noisy_layer.colormap = 'gray'
 
     view_side_by_side(clean.shape[1])

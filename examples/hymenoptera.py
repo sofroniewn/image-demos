@@ -14,13 +14,13 @@ cache.register()
 dir_ants = 'data/hymenoptera/train/ants/'
 dir_bees = 'data/hymenoptera/train/bees/'
 
-ants = imread(dir_ants + '*.jpg').transpose(1, 2, 0, 3)
-bees = imread(dir_bees + '*.jpg').transpose(1, 2, 0, 3)
+ants = imread(dir_ants + '*.jpg')
+bees = imread(dir_bees + '*.jpg')
 
 print(ants.shape)
 print(bees.shape)
 
-offset = max(ants.shape[1], bees.shape[1]) + 20
+offset = max(ants.shape[2], bees.shape[2]) + 20
 
 with app_context():
     # create an empty viewer

@@ -142,4 +142,4 @@ with app_context():
                            'i': increment_label, 'm': max_label,
                            'd': decrement_label, 't': background_label}
 
-    viewer.key_bindings = custom_key_bindings
+    viewer.keybindings = custom_key_bindings

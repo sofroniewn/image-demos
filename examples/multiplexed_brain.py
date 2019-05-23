@@ -10,7 +10,7 @@ from vispy.color import Colormap
 from glob import glob
 from os.path import basename
 
-file_names = glob('data/salvatore_seeley/*.tif')
+file_names = glob('data/ndcn/seeley/*.tif')
 names = [basename(f)[:-18] for f in file_names]
 images = [imread(f) for f in file_names]
 colors = [(1., 0., 0., 1.),

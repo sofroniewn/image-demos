@@ -5,7 +5,7 @@ three different color channels
 
 from skimage.io import imread, imsave
 import numpy as np
-from napari import ViewerApp
+from napari import Viewer
 from napari.util import app_context
 from vispy.color import Colormap
 
@@ -16,7 +16,7 @@ print(cells.shape)
 
 with app_context():
     # create an empty viewer
-    viewer = ViewerApp()
+    viewer = Viewer()
 
     ch1 = viewer.add_image(cells[:, 1, :, :], name='red spots',
                            clim_range=(300, 700))

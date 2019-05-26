@@ -4,7 +4,7 @@ Displays neurons with polygon masks
 
 from skimage.io import imread
 import numpy as np
-from napari import ViewerApp
+from napari import Viewer
 from napari.util import app_context
 from skimage.measure import label
 
@@ -14,7 +14,7 @@ mask = imread('data/neurofinder/mask.tif')
 
 with app_context():
     # create an empty viewer
-    viewer = ViewerApp()
+    viewer = Viewer()
 
     mean_layer = viewer.add_image(mean, name='mean')
     mean_layer.clim = (0.0, 600.0)

@@ -11,7 +11,9 @@ javabridge.start_vm(class_path=bioformats.JARS)
 files = glob('data/ndcn/kampmann/*.nd2')
 
 for f in files:
-    images = bioformats.load_image(f)
-
+    images = bioformats.load_image(f).transpose(2, 0, 1)
+    print(images.shape)
     imsave(f[:-3] + 'tif', images.astype('float32'), plugin='tifffile',
            photometric='minisblack')
+
+javabridge.kill_vm()

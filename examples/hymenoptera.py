@@ -5,7 +5,7 @@ Dynamically load irregularly shapes images of ants and bees
 import numpy as np
 from dask_image.imread import imread
 from dask.cache import Cache
-from napari import ViewerApp
+from napari import Viewer
 from napari.util import app_context
 
 cache = Cache(2e9)  # Leverage two gigabytes of memory
@@ -24,11 +24,11 @@ offset = max(ants.shape[2], bees.shape[2]) + 20
 
 with app_context():
     # create an empty viewer
-    viewer = ViewerApp()
+    viewer = Viewer()
 
     # add the images
-    ant_layer = viewer.add_image(ants, name='ants')
-    bee_layer = viewer.add_image(bees, name='bees')
+    ant_layer = viewer.add_image(ants, name='ants', clim_range=[0, 255])
+    bee_layer = viewer.add_image(bees, name='bees', clim_range=[0, 255])
 
     bee_layer.translate = [offset, 0]
-    viewer.camera.set_range((0, 2*offset), (0, offset))
+    viewer.window.qt_viewer.view.camera.set_range((0, 2*offset), (0, offset))

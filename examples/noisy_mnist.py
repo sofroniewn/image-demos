@@ -3,7 +3,7 @@ Displays an MRI volume
 """
 
 from skimage.io import imread
-from napari import ViewerApp
+from napari import Viewer
 from napari.util import app_context
 
 clean = imread('data/mnist/clean.tif')
@@ -22,7 +22,7 @@ def view_side_by_side(offset):
 
 with app_context():
     # create an empty viewer
-    viewer = ViewerApp()
+    viewer = Viewer()
 
     # add the images
     clean_layer = viewer.add_image(clean, name='clean')

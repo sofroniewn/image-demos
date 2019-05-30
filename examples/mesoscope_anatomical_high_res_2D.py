@@ -4,7 +4,7 @@ Displays anatomical data from the mesoscope
 """
 
 from skimage.io import imread
-from napari import ViewerApp
+from napari import Viewer
 from napari.util import app_context
 
 image = imread('data/mesoscope/anatomical/plane.tif')
@@ -12,7 +12,7 @@ image = imread('data/mesoscope/anatomical/plane.tif')
 
 with app_context():
     # create an empty viewer
-    viewer = ViewerApp()
+    viewer = Viewer()
 
     # add the image
     layer = viewer.add_image(image[0], name='plane')

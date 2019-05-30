@@ -4,7 +4,7 @@ Display multiplexed brain data from Salvatore and Seeley.
 
 from skimage.io import imread
 import numpy as np
-from napari import ViewerApp
+from napari import Viewer
 from napari.util import app_context
 from vispy.color import Colormap
 from glob import glob
@@ -21,7 +21,7 @@ colors = [(1., 0., 0., 1.),
 
 with app_context():
     # create an empty viewer
-    viewer = ViewerApp()
+    viewer = Viewer()
 
     # add the images
     for i in range(len(images)):
@@ -30,7 +30,7 @@ with app_context():
             col = (0., 0., 1., 1.)
         else:
             col = colors[i % len(colors)]
-        layer = viewer.add_image(image, name=names[i])
+        layer = viewer.add_image(np.flipud(image), name=names[i])
         layer.colormap = Colormap([(0., 0., 0., 1.), col])
         layer.clim = [np.percentile(image, 1), np.percentile(image, 99)]
         layer.blending = 'additive'

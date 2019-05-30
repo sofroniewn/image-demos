@@ -3,7 +3,7 @@ Displays an 100GB zarr file of lattice light sheet data
 """
 
 import numpy as np
-from napari import ViewerApp
+from napari import Viewer
 from napari.util import app_context
 import dask.array as da
 from timeit import timeit
@@ -67,7 +67,7 @@ with app_context():
                     d = {'N': N, 'c': c, 'shape': data.shape, 'location': loc, 'opp_caching': opc}
 
                     # create an empty viewer
-                    viewer = ViewerApp()
+                    viewer = Viewer()
                     layer = viewer.add_image(data, multichannel=False, name='zarr benchmarks',
                                              clim_range=clim_range)
 

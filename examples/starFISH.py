@@ -4,7 +4,7 @@ Displays FISH data, raw and deconvolved, with spots detected using starFISH
 
 from skimage.io import imread
 import numpy as np
-from napari import ViewerApp
+from napari import Viewer
 from napari.util import app_context
 
 raw = imread('data/smFISH/raw.tif')
@@ -15,7 +15,7 @@ print(raw.shape)
 
 with app_context():
     # create an empty viewer
-    viewer = ViewerApp()
+    viewer = Viewer()
 
     # add the raw images
     raw_layer = viewer.add_image(raw, name='images')

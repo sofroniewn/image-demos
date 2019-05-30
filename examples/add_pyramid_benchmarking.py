@@ -84,9 +84,9 @@ with app_context():
     # result = timeit(update_cmd, number=1, globals=glbls)*1000
     # print(glbls['scale'], result)
     #
-    # glbls = {'update': update, 'scale': 1}
-    # result = timeit(update_cmd, number=1, globals=glbls)*1000
-    # print(glbls['scale'], result)
+    glbls = {'cmd_str': cmd_str, 'camera': camera}
+    result = timeit(cmd_str, number=1, globals=glbls)*1000
+    print(glbls['cmd_str'], result)
 
     #stats = cProfile.run(cmd_str, sort='cumtime')
     #print(stats)

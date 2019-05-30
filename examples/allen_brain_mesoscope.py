@@ -5,7 +5,7 @@ Displays the allen brain reference atlas at 10 um resolution
 from skimage.io import imread
 import numpy as np
 from glob import glob
-from napari import ViewerApp
+from napari import Viewer
 from napari.util import app_context
 
 base_name = 'data/allen_brain/natalia'
@@ -21,7 +21,7 @@ shape = slices[0].shape[1:]
 
 with app_context():
     # create an empty viewer
-    viewer = ViewerApp()
+    viewer = Viewer()
 
     # add the layers
     for i, im in enumerate(slices):

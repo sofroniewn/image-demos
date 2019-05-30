@@ -4,7 +4,7 @@ View 2D slices of electron microscopy data
 
 import numpy as np
 import h5py
-from napari import ViewerApp
+from napari import Viewer
 from napari.util import app_context
 # from timeit import timeit
 # from cProfile import Profile
@@ -24,7 +24,7 @@ posts = coords[types == 'postsynaptic_site']
 
 with app_context():
     # create an empty viewer
-    viewer = ViewerApp()
+    viewer = Viewer()
 
     raw_layer = viewer.add_image(raw, name='raw')
     raw_layer.colormap = 'gray'

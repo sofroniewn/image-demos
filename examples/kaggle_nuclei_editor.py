@@ -5,7 +5,7 @@ Dynamically load irregularly shapes images of ants and bees
 import numpy as np
 from skimage.io import imread, imsave
 from glob import glob
-from napari import ViewerApp
+from napari import Viewer
 from napari.util import app_context
 from os.path import isfile
 import warnings
@@ -22,7 +22,7 @@ datasets = sorted(glob(base_name))
 
 with app_context():
     # create an empty viewer
-    viewer = ViewerApp()
+    viewer = Viewer()
 
     # add the first image
     image = imread(datasets[0] + '/images/image_gray.tif')
@@ -142,4 +142,4 @@ with app_context():
                            'i': increment_label, 'm': max_label,
                            'd': decrement_label, 't': background_label}
 
-    viewer.keybindings = custom_key_bindings
+    viewer.key_bindings = custom_key_bindings

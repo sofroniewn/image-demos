@@ -5,7 +5,7 @@ Displays calcium timeseries from neurofinder
 from skimage.io import imread
 from skimage.measure import label
 import numpy as np
-from napari import ViewerApp
+from napari import Viewer
 from napari.util import app_context
 from vispy.color import Colormap
 
@@ -18,7 +18,7 @@ polygons = np.load('data/neurofinder/polygons_edit.npy')
 
 with app_context():
     # create an empty viewer
-    viewer = ViewerApp()
+    viewer = Viewer()
 
     # add the timeseries
     movie_layer = viewer.add_image(movie, name='timeseries')

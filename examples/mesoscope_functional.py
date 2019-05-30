@@ -3,7 +3,7 @@ Displays functional data from the mesoscope
 """
 
 from skimage.io import imread
-from napari import ViewerApp
+from napari import Viewer
 from napari.util import app_context
 
 mean = imread('data/mesoscope/functional/mean.tif')
@@ -15,7 +15,7 @@ movie = imread('data/mesoscope/functional/movie.tif')
 
 with app_context():
     # create an empty viewer
-    viewer = ViewerApp()
+    viewer = Viewer()
 
     # add the timeseries
     movie_layer = viewer.add_image(movie, name='timeseries')

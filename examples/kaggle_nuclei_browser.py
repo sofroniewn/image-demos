@@ -5,7 +5,7 @@ Dynamically load irregularly shapes images of ants and bees
 import numpy as np
 from dask_image.imread import imread
 from dask.cache import Cache
-from napari import ViewerApp
+from napari import Viewer
 from napari.util import app_context
 
 cache = Cache(2e9)  # Leverage two gigabytes of memory
@@ -20,7 +20,7 @@ print(images.shape)
 
 with app_context():
     # create an empty viewer
-    viewer = ViewerApp()
+    viewer = Viewer()
 
     # add the images
     image_layer = viewer.add_image(images, name='nuceli', clim_range=(0, 255))

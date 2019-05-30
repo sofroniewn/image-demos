@@ -3,7 +3,7 @@ Displays anatomical data from the mesoscope
 """
 
 from skimage.io import imread
-from napari import ViewerApp
+from napari import Viewer
 from napari.util import app_context
 
 stack = imread('data/mesoscope/anatomical/volume_lowres.tif')
@@ -11,7 +11,7 @@ stack = imread('data/mesoscope/anatomical/volume_lowres.tif')
 
 with app_context():
     # create an empty viewer
-    viewer = ViewerApp()
+    viewer = Viewer()
 
     # add the image
     layer = viewer.add_image(stack

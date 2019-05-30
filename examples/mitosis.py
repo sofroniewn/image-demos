@@ -3,7 +3,7 @@ Displays a timeseries of a z-stack during mitosis
 """
 
 from skimage.io import imread
-from napari import ViewerApp
+from napari import Viewer
 from napari.util import app_context
 from vispy.color import Colormap
 
@@ -12,7 +12,7 @@ mitosis = imread('data/mitosis/mitosis.tif')
 
 with app_context():
     # create an empty viewer
-    viewer = ViewerApp()
+    viewer = Viewer()
 
     # add the first channel to a red channel
     red = viewer.add_image(mitosis[:, :, 0, :, :], name='red')

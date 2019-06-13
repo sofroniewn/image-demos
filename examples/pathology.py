@@ -30,8 +30,6 @@ with app_context():
 
     # add the pyramid
     layer = viewer.add_pyramid(pyramid, name='slide')
-    camera = viewer.window.qt_viewer.view.camera
-    camera.rect = (-4000, 0, pyramid[0].shape[1]+8000, pyramid[0].shape[0])
 
     tumor_layer = viewer.add_shapes(tumors, shape_type='polygon', edge_width=50,
                                     edge_color='blue', face_color=[0, 0, 1, 0.5],

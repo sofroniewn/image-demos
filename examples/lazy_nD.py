@@ -26,7 +26,3 @@ with app_context():
     viewer = Viewer()
     # layer = viewer.add_image(base, name='base')
     layer = viewer.add_pyramid(pyramid, name='pyramid')
-
-    base_shape = pyramid[0].shape[-2:]
-    viewer.camera.rect = (-0.1 * base_shape[1], -0.1 * base_shape[0],
-                          1.2 * base_shape[1], 1.2 * base_shape[0])

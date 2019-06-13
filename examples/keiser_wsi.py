@@ -24,7 +24,3 @@ with app_context():
 
     # add the images
     layer = viewer.add_pyramid(pyramid, name=slide_name, clim_range=[0, 255])
-    camera = viewer.window.qt_viewer.view.camera
-    base_shape = pyramid[0].shape
-    camera.rect = (-0.1 * base_shape[1], -0.1 * base_shape[0],
-                   1.2 * base_shape[1], 1.2 * base_shape[0])

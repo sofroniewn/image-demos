@@ -35,7 +35,7 @@ with app_context():
     lc_layer.colormap = 'gray'
     lc_layer.visible = False
 
-    centers_layer = viewer.add_markers(centers, name='centers')
+    centers_layer = viewer.add_points(centers, name='centers')
     centers_layer.edge_width = 0
     centers_layer.face_color = 'green'
     centers_layer.opacity = 0.5

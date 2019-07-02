@@ -27,7 +27,7 @@ with app_context():
     decon_layer.clim = (0.0, 0.2)
     decon_layer.visible = False
 
-    spots_layer = viewer.add_markers(spots, face_color='red',
+    spots_layer = viewer.add_points(spots, face_color='red',
                                      edge_color='red', symbol='ring', size=8,
                                      n_dimensional=True, name='spots')
     spots_layer.opacity = 0.5

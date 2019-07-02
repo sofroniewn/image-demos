@@ -8,7 +8,7 @@ from glob import glob
 from napari import Viewer
 from napari.util import app_context
 
-base_name = 'data/allen_brain/natalia'
+base_name = 'data/mesoscope/natalia'
 
 experiment = '/0620_Slc_2x4'
 # experiment = '/0622_Vip_4x2'

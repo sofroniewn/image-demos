@@ -2,8 +2,7 @@
 Displays the allen brain reference atlas at 10 um resolution
 """
 
-from napari import Viewer
-from napari.util import app_context
+from napari import Viewer, gui_qt
 import dask.array as da
 from dask.cache import Cache
 import numpy as np
@@ -21,7 +20,7 @@ for i in range(4):
     pyramid.append(image)
 print('pyramid level shapes: ', [p.shape for p in pyramid])
 
-with app_context():
+with gui_qt():
     # create an empty viewer
     viewer = Viewer()
     # layer = viewer.add_image(base, name='base')

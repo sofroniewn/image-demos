@@ -38,11 +38,11 @@ with gui_qt():
     labels_layer.brush_size = 2
     labels_layer.n_dimensional = False
 
-
+    @viewer.bind_key('s')
     def save(viewer):
         """Save the current annotations
         """
-        labels = viewer.layers[1].image.astype(np.uint16)
+        labels = viewer.layers[1].data.astype(np.uint16)
         name = int(viewer.layers[0].name)
         imsave(datasets[name] + '/labels/drawn.tif', labels, plugin='tifffile',
                photometric='minisblack')
@@ -50,6 +50,7 @@ with gui_qt():
         print(msg)
         viewer.status = msg
 
+    @viewer.bind_key('n')
     def next(viewer):
         """Save the current annotation and load the next image and annotation
         """
@@ -66,14 +67,15 @@ with gui_qt():
         else:
             labels = np.zeros(image.shape, dtype=np.int)
 
-        viewer.layers[0].image = image
+        viewer.layers[0].data = image
         viewer.layers[0].name = str(name)
-        viewer.layers[1].image = labels
+        viewer.layers[1].data = labels
 
         msg = 'Loading ' + viewer.layers[0].name
         print(msg)
         viewer.status = msg
 
+    @viewer.bind_key('b')
     def previous(viewer):
         """Save the current annotation and load the previous image and annotation
         """
@@ -90,14 +92,15 @@ with gui_qt():
         else:
             labels = np.zeros(image.shape, dtype=np.int)
 
-        viewer.layers[0].image = image
+        viewer.layers[0].data = image
         viewer.layers[0].name = str(name)
-        viewer.layers[1].image = labels
+        viewer.layers[1].data = labels
 
         msg = 'Loading ' + viewer.layers[0].name
         print(msg)
         viewer.status = msg
 
+    @viewer.bind_key('r')
     def revert(viewer):
         """Loads the last saved annotation
         """
@@ -107,38 +110,8 @@ with gui_qt():
         else:
             labels = np.zeros(image.shape, dtype=np.int)
 
-        viewer.layers[1].image = labels
+        viewer.layers[1].data = labels
 
         msg = 'Reverting ' + viewer.layers[0].name
         print(msg)
         viewer.status = msg
-
-    def increment_label(viewer):
-        """Increments current label
-        """
-        label = viewer.layers[1].selected_label
-        viewer.layers[1].selected_label = label + 1
-
-    def decrement_label(viewer):
-        """Decrements current label
-        """
-        label = viewer.layers[1].selected_label
-        if label > 0:
-            viewer.layers[1].selected_label = label - 1
-
-    def background_label(viewer):
-        """Set current label to background
-        """
-        viewer.layers[1].selected_label = 0
-
-    def max_label(viewer):
-        """Sets label to max label in visible slice
-        """
-        label = viewer.layers[1]._image_view.max()
-        viewer.layers[1].selected_label = label + 1
-
-    custom_key_bindings = {'s': save, 'r': revert, 'n': next, 'b': previous,
-                           'i': increment_label, 'm': max_label,
-                           'd': decrement_label, 't': background_label}
-
-    viewer.key_bindings = custom_key_bindings

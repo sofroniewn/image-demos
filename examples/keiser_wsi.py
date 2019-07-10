@@ -5,8 +5,7 @@ Dynamically load irregularly shapes images of ants and bees
 import numpy as np
 import dask.array as da
 from dask.cache import Cache
-from napari import Viewer
-from napari.util import app_context
+from napari import Viewer, gui_qt
 
 
 cache = Cache(2e9)  # Leverage two gigabytes of memory
@@ -18,7 +17,7 @@ pyramid = [da.from_zarr(base_name + slide_name + '.zarr/' + str(i))
            for i in range(8)]
 print([p.shape[:2] for p in pyramid])
 
-with app_context():
+with gui_qt():
     # create an empty viewer
     viewer = Viewer()
 

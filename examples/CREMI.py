@@ -4,8 +4,7 @@ View 2D slices of electron microscopy data
 
 import numpy as np
 import h5py
-from napari import Viewer
-from napari.util import app_context
+from napari import Viewer, gui_qt
 # from timeit import timeit
 # from cProfile import Profile
 # pr = Profile()
@@ -22,12 +21,11 @@ coords = (coords / resolution).astype(np.int)
 pres = coords[types == 'presynaptic_site']
 posts = coords[types == 'postsynaptic_site']
 
-with app_context():
+with gui_qt():
     # create an empty viewer
     viewer = Viewer()
 
-    raw_layer = viewer.add_image(raw, name='raw')
-    raw_layer.colormap = 'gray'
+    raw_layer = viewer.add_image(raw, name='raw', colormap='gray')
 
     neuron_labels_layer = viewer.add_labels(neuron_labels, opacity=0.4,
                                             name='neurons', num_colors=300)
@@ -35,11 +33,11 @@ with app_context():
     cleft_labels_layer = viewer.add_labels(cleft_labels, opacity=0.4,
                                            name='clefts', num_colors=10)
 
-    pre_layer = viewer.add_markers(pres, face_color='cyan',
+    pre_layer = viewer.add_points(pres, face_color='cyan',
                                    edge_color='cyan', size=[10, 10, 4],
                                    n_dimensional=True, name='presynaptic')
 
-    post_layer = viewer.add_markers(posts, face_color='magenta',
+    post_layer = viewer.add_points(posts, face_color='magenta',
                                     edge_color='magenta', size=[10, 10, 4],
                                     n_dimensional=True, name='postsynaptic')
 

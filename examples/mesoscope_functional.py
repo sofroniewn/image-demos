@@ -3,33 +3,28 @@ Displays functional data from the mesoscope
 """
 
 from skimage.io import imread
-from napari import Viewer
-from napari.util import app_context
+from napari import Viewer, gui_qt
 
-mean = imread('data/mesoscope/functional/mean.tif')
-localcorr = imread('data/mesoscope/functional/localcorr.tif')
-rsq = imread('data/mesoscope/functional/rsqOverlayLC.tif')
-tune = imread('data/mesoscope/functional/tuneCorPos.tif')
-movie = imread('data/mesoscope/functional/movie.tif')
+mean = imread('data/mesoscope/functional/mean.tif')[65:-65, 65:-65]
+localcorr = imread('data/mesoscope/functional/localcorr.tif')[65:-65, 65:-65]
+rsq = imread('data/mesoscope/functional/rsqOverlayLC.tif')[65:-65, 65:-65]
+tune = imread('data/mesoscope/functional/tuneCorPos.tif')[65:-65, 65:-65]
+movie = imread('data/mesoscope/functional/movie.tif')[:, 65:-65, 65:-65]
 
 
-with app_context():
+with gui_qt():
     # create an empty viewer
     viewer = Viewer()
 
     # add the timeseries
-    movie_layer = viewer.add_image(movie, name='timeseries')
-    movie_layer.colormap = 'gray'
+    movie_layer = viewer.add_image(movie, name='timeseries', colormap='gray')
 
     # add the mean image
-    mean_layer = viewer.add_image(mean, name='mean')
-    mean_layer.clim = (0.0, 1000.0)
-    mean_layer.colormap = 'gray'
+    mean_layer = viewer.add_image(mean, name='mean', colormap='gray', clim=(0.0, 1000.0))
+
 
     # add the local correlation image
-    lc_layer = viewer.add_image(localcorr, name='localcorr')
-    lc_layer.clim = (0.25, 0.75)
-    lc_layer.colormap = 'gray'
+    lc_layer = viewer.add_image(localcorr, name='localcorr', clim=(0.25, 0.75), colormap='gray')
 
     # add the rsq image
     rsq_layer = viewer.add_image(rsq, name='rsq')

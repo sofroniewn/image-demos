@@ -5,8 +5,7 @@ Dynamically load irregularly shapes images of ants and bees
 import numpy as np
 from dask_image.imread import imread
 from dask.cache import Cache
-from napari import Viewer
-from napari.util import app_context
+from napari import Viewer, gui_qt
 from pandas import read_csv
 from glob import glob
 
@@ -36,7 +35,7 @@ base_cols = ['red', 'green', 'blue', 'white']
 
 colors = [base_cols[i] for i in id]
 
-with app_context():
+with gui_qt():
     # create an empty viewer
     viewer = Viewer()
 
@@ -50,6 +49,7 @@ with app_context():
 
     viewer.layers.unselect_all()
 
+    @viewer.bind_key('c')
     def cored(viewer):
         """Set the current annotation to cored
         """
@@ -59,6 +59,7 @@ with app_context():
         shapes.refresh()
         print(msg)
 
+    @viewer.bind_key('d')
     def diffuse(viewer):
         """Set the current annotation to diffuse
         """
@@ -68,6 +69,7 @@ with app_context():
         shapes.refresh()
         print(msg)
 
+    @viewer.bind_key('a')
     def CAA(viewer):
         """Set the current annotation to CAA
         """
@@ -77,6 +79,7 @@ with app_context():
         shapes.refresh()
         print(msg)
 
+    @viewer.bind_key('n')
     def negative(viewer):
         """Set the current annotation to negative
         """
@@ -99,6 +102,3 @@ with app_context():
     #     current = viewer.dims.indices[0]
     #     if current - 1 >= viewer.dims.range[0][0]:
     #         viewer.dims.set_point(0, current - 1)
-
-    custom_key_bindings = {'c': cored, 'd': diffuse, 'a': CAA, 'n': negative}
-    viewer.key_bindings = custom_key_bindings

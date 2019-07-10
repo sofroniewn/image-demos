@@ -6,7 +6,6 @@ three different color channels
 from skimage.io import imread, imsave
 import numpy as np
 from napari import Viewer, gui_qt
-from vispy.color import Colormap
 
 cells = imread('data/allen_cell/cells.tif')
 labels = imread('data/allen_cell/labels.tif')

@@ -3,16 +3,14 @@ Displays an MRI volume
 """
 
 from skimage.io import imread
-from napari import Viewer
-from napari.util import app_context
+from napari import Viewer, gui_qt
 
 mri = imread('data/MRI/mri.tif')
 
 
-with app_context():
+with gui_qt():
     # create an empty viewer
     viewer = Viewer()
 
     # add the mri
-    layer = viewer.add_image(mri, name='mri')
-    layer.colormap = 'gray'
+    layer = viewer.add_image(mri, name='mri', colormap='gray')

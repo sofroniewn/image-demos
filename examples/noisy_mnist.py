@@ -3,8 +3,7 @@ Displays an MRI volume
 """
 
 from skimage.io import imread
-from napari import Viewer
-from napari.util import app_context
+from napari import Viewer, gui_qt
 
 clean = imread('data/mnist/clean.tif')
 noisy = imread('data/mnist/noisy.tif')
@@ -20,15 +19,13 @@ def view_side_by_side(offset):
     viewer.camera.set_range((0, 2*offset), (0, offset))
 
 
-with app_context():
+with gui_qt():
     # create an empty viewer
     viewer = Viewer()
 
     # add the images
-    clean_layer = viewer.add_image(clean, name='clean')
-    clean_layer.colormap = 'gray'
+    clean_layer = viewer.add_image(clean, name='clean', colormap='gray')
 
-    noisy_layer = viewer.add_image(noisy, name='noisy')
-    noisy_layer.colormap = 'gray'
-
+    noisy_layer = viewer.add_image(noisy, name='noisy', colormap='gray')
+    
     view_side_by_side(clean.shape[1])

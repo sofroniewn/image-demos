@@ -12,11 +12,7 @@ from os.path import basename
 file_names = glob('data-njs/ndcn/seeley/*.tif')
 names = [basename(f)[:-18] for f in file_names]
 images = [imread(f) for f in file_names]
-colors = [(1., 0., 0., 1.),
-          (0., 1., 0., 1.),
-          (1., 1., 0., 1.),
-          (1., 0., 1., 1.),
-          (0., 1., 1., 1.)]
+colors = ['red', 'blue', 'green', 'yellow', 'magenta', 'cyan']
 
 with gui_qt():
     # create an empty viewer
@@ -26,10 +22,9 @@ with gui_qt():
     for i in range(len(images)):
         image = images[i]
         if names[i] == 'DAPI':
-            col = (0., 0., 1., 1.)
+            col = 'blue'
         else:
             col = colors[i % len(colors)]
-        layer = viewer.add_image(np.flipud(image), name=names[i])
-        layer.colormap = Colormap([(0., 0., 0., 1.), col])
-        layer.clim = [np.percentile(image, 1), np.percentile(image, 99)]
+        clim = [np.percentile(image, 1), np.percentile(image, 99)]
+        layer = viewer.add_image(np.flipud(image), name=names[i], colormap=col, clim=clim)
         layer.blending = 'additive'

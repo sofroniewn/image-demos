@@ -7,8 +7,7 @@ Display a labels layer above of an image layer using the add_labels and
 add_image APIs
 """
 
-from napari import Viewer
-from napari.util import app_context
+from napari import Viewer, gui_qt
 import numpy as np
 from scipy import ndimage as ndi
 from skimage import data
@@ -53,34 +52,33 @@ markers = ndi.label(local_maxi_image)[0]
 
 labels = watershed(-distance, markers, mask=blobs)
 
-def rerun(viewer):
-    blobs = viewer.layers['input'].image
-    distance = viewer.layers['distance'].image
-    local_maxi = viewer.layers['markers'].coords
-    print('Number of markers: ', len(local_maxi))
-    local_maxi_image = np.zeros(blobs.shape, dtype='bool')
-    for cord in local_maxi:
-        local_maxi_image[tuple(np.round(cord).astype(int))] = True
-    markers = ndi.label(local_maxi_image)[0]
-    labels = watershed(-distance, markers, mask=blobs)
-    viewer.layers['output'].image = labels
 
-with app_context():
+with gui_qt():
 
     # create an empty viewer
     viewer = Viewer()
 
+    @viewer.bind_key('r')
+    def rerun(viewer):
+        blobs = viewer.layers['input'].data
+        distance = viewer.layers['distance'].data
+        local_maxi = viewer.layers['markers'].data
+        print('Number of markers: ', len(local_maxi))
+        local_maxi_image = np.zeros(blobs.shape, dtype='bool')
+        for cord in local_maxi:
+            local_maxi_image[tuple(np.round(cord).astype(int))] = True
+        markers = ndi.label(local_maxi_image)[0]
+        labels = watershed(-distance, markers, mask=blobs)
+        viewer.layers['output'].data = labels
+
     # add the raw image
-    viewer.add_image(image, name='raw')
-    viewer.layers['raw'].colormap = 'gray'
+    viewer.add_image(image, name='raw', colormap='gray')
 
     # add the input image
-    viewer.add_image(blobs.astype('float'), name='input')
-    viewer.layers['input'].colormap = 'gray'
+    viewer.add_image(blobs.astype('float'), name='input', colormap='gray')
 
     # add the distance image
-    viewer.add_image(distance, name='distance')
-    viewer.layers['distance'].colormap = 'gray'
+    viewer.add_image(distance, name='distance', colormap='gray')
 
     # add the resulting labels image
     viewer.add_labels(labels, name='output')
@@ -89,7 +87,4 @@ with app_context():
     viewer.add_labels(gt, name='gt')
 
     # add the markers
-    viewer.add_markers(local_maxi, face_color='blue', size=3, name='markers')
-
-    custom_key_bindings = {'s': rerun}
-    viewer.key_bindings = custom_key_bindings
+    viewer.add_points(local_maxi, face_color='blue', size=3, name='markers')

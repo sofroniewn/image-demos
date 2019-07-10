@@ -12,7 +12,7 @@ from napari.util import app_context
 cache = Cache(2e9)  # Leverage two gigabytes of memory
 cache.register()
 
-base_name = 'data/ndcn/keiser/slides/'
+base_name = 'data-njs/ndcn/keiser/slides/'
 slide_name = 'NA4009-02_AB'
 pyramid = [da.from_zarr(base_name + slide_name + '.zarr/' + str(i))
            for i in range(8)]

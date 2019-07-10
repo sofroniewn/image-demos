@@ -6,7 +6,6 @@ from skimage import data
 from skimage.color import rgb2gray
 from skimage.transform import pyramid_gaussian
 import napari
-from napari.util import app_context
 import numpy as np
 import dask.array as da
 from dask.cache import Cache
@@ -54,7 +53,7 @@ cmd_str = """camera.zoom(.1, center=(0.5,0.5))
 camera.zoom(10, center=(0.5,0.5))
 """
 
-with app_context():
+with napari.gui_qt():
     # create the viewer
     viewer = napari.Viewer()
 

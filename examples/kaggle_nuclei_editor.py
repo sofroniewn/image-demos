@@ -5,8 +5,7 @@ Dynamically load irregularly shapes images of ants and bees
 import numpy as np
 from skimage.io import imread, imsave
 from glob import glob
-from napari import Viewer
-from napari.util import app_context
+from napari import Viewer, gui_qt
 from os.path import isfile
 import warnings
 
@@ -20,7 +19,7 @@ base_name = 'data/kaggle-nuclei/fixes/stage1_train/*'
 datasets = sorted(glob(base_name))
 
 
-with app_context():
+with gui_qt():
     # create an empty viewer
     viewer = Viewer()
 

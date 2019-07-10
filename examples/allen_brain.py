@@ -3,14 +3,13 @@ Displays the allen brain reference atlas at 10 um resolution
 """
 
 from skimage.io import imread
-from napari import Viewer
-from napari.util import app_context
+from napari import Viewer, gui_qt
 
 brain = imread('data/allen_brain/average_template_25.tif')
 annotation = imread('data/allen_brain/annotation_25.tif')
 
 
-with app_context():
+with gui_qt():
     # create an empty viewer
     viewer = Viewer()
 

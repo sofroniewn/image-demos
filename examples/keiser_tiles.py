@@ -14,7 +14,7 @@ from glob import glob
 cache = Cache(2e9)  # Leverage two gigabytes of memory
 cache.register()
 
-base_dir = 'data/ndcn/keiser/'
+base_dir = 'data-njs/ndcn/keiser/'
 slide_name = 'NA4009-02_AB'
 file_name = base_dir + 'annotations-train.csv'
 image_paths = glob(base_dir + 'tiles/' + slide_name + '/*.jpg')

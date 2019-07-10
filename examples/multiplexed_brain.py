@@ -4,13 +4,12 @@ Display multiplexed brain data from Salvatore and Seeley.
 
 from skimage.io import imread
 import numpy as np
-from napari import Viewer
-from napari.util import app_context
+from napari import Viewer, gui_qt
 from vispy.color import Colormap
 from glob import glob
 from os.path import basename
 
-file_names = glob('data/ndcn/seeley/*.tif')
+file_names = glob('data-njs/ndcn/seeley/*.tif')
 names = [basename(f)[:-18] for f in file_names]
 images = [imread(f) for f in file_names]
 colors = [(1., 0., 0., 1.),
@@ -19,7 +18,7 @@ colors = [(1., 0., 0., 1.),
           (1., 0., 1., 1.),
           (0., 1., 1., 1.)]
 
-with app_context():
+with gui_qt():
     # create an empty viewer
     viewer = Viewer()
 

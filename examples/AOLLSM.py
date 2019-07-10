@@ -3,8 +3,7 @@ Displays an 100GB zarr file of lattice light sheet data
 """
 
 import numpy as np
-from napari import Viewer
-from napari.util import app_context
+from napari import Viewer, gui_qt
 import zarr
 
 file_name = 'data/LLSM/AOLLSM_m4_560nm.zarr'
@@ -13,7 +12,7 @@ print(data.shape)
 
 clim_range = [0, 150_000]
 
-with app_context():
+with gui_qt():
     # create an empty viewer
     viewer = Viewer()
     layer = viewer.add_image(data, multichannel=False, name='AOLLSM_m4_560nm',

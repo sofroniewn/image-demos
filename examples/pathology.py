@@ -6,8 +6,7 @@ import numpy as np
 import dask.array as da
 from dask.cache import Cache
 import xml.etree.ElementTree as ET
-from napari import Viewer
-from napari.util import app_context
+from napari import Viewer, gui_qt
 
 cache = Cache(2e9)  # Leverage two gigabytes of memory
 cache.register()
@@ -24,7 +23,8 @@ tumors = [shape_1, shape_2]
 
 print([p.shape[:2] for p in pyramid])
 
-with app_context():
+
+with gui_qt():
     # create an empty viewer
     viewer = Viewer()
 

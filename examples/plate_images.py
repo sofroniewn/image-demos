@@ -9,7 +9,7 @@ from napari.util import app_context
 from vispy.color import Colormap
 
 
-file_name = 'data/ndcn/kampmann/plate.tif'
+file_name = 'data-njs/ndcn/kampmann/plate.tif'
 images = imread(file_name).transpose(2, 0, 1)
 colors = {'blue': (0., 0., 1., 1.),
           'red': (1., 0., 0., 1.),

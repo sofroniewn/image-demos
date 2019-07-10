@@ -5,8 +5,7 @@ Displays the allen brain reference atlas at 10 um resolution
 from skimage.io import imread
 import numpy as np
 from glob import glob
-from napari import Viewer
-from napari.util import app_context
+from napari import Viewer, gui_qt
 
 base_name = 'data/mesoscope/natalia'
 
@@ -19,7 +18,7 @@ slices = [imread(f) for f in files]
 print(slices[0].shape)
 shape = slices[0].shape[1:]
 
-with app_context():
+with gui_qt():
     # create an empty viewer
     viewer = Viewer()
 

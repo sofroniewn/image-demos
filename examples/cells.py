@@ -43,7 +43,7 @@ with app_context():
     boundaries_layer.visible = False
 
 
-    centers_layer = viewer.add_markers(centers, name='centers')
+    centers_layer = viewer.add_points(centers, name='centers')
     centers_layer.size = 20
     centers_layer.edge_width = 0
     centers_layer.face_color = 'blue'

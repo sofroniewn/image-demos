@@ -7,8 +7,8 @@ from skimage.io import imread, imsave
 import numpy as np
 from napari import Viewer, gui_qt
 
-cells = imread('data/allen_cell/cells.tif')
-labels = imread('data/allen_cell/labels.tif')
+cells = imread('data-njs/allen_cell/cells.tif')
+labels = imread('data-njs/allen_cell/labels.tif')
 
 print(cells.shape)
 

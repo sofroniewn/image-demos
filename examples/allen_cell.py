@@ -21,7 +21,6 @@ with gui_qt():
     ch1.blending = 'additive'
 
     ch2 = viewer.add_image(cells[:, 2, :, :], name='cells', colormap='green', clim=(410.0, 700.0))
-    #ch2.colormap = Colormap([(0, 0, 0, 1), (0., 1., 0., 1.)])
     ch2.blending = 'additive'
 
     ch3 = viewer.add_image(cells[:, 3, :, :], name='yellow spots',
@@ -37,6 +36,6 @@ with gui_qt():
     #labels = np.zeros([cells.shape[i] for i in [0, 2, 3]])
     labels_layer = viewer.add_labels(labels, name='annotations', n_dimensional=False)
 
-labels = labels_layer.data
-imsave('data/allen_cell/labels.tif', labels.astype('uint32'), plugin='tifffile',
-       photometric='minisblack')
+# labels = labels_layer.data
+# imsave('data/allen_cell/labels.tif', labels.astype('uint32'), plugin='tifffile',
+#        photometric='minisblack')

@@ -13,9 +13,9 @@ with gui_qt():
     viewer = Viewer()
 
     # add the first channel to a red channel
-    red = viewer.add_image(mitosis[:, :, 0, :, :], name='red', clim=(1500.0, 15000.0), colormap='red')
+    red = viewer.add_volume(mitosis[:, :, 0, :, :], name='red', clim=(1500.0, 15000.0), colormap='red')
     red.blending = 'additive'
 
     # add the first channel to a green channel
-    green = viewer.add_image(mitosis[:, :, 1, :, :], name='green', clim=(1500.0, 15000.0), colormap='green')
+    green = viewer.add_volume(mitosis[:, :, 1, :, :], name='green', clim=(1500.0, 15000.0), colormap='green')
     green.blending = 'additive'

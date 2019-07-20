@@ -13,4 +13,4 @@ with gui_qt():
     viewer = Viewer()
 
     # add the image
-    layer = viewer.add_volume(stack, name='stack', clim=(0.0, 3000.0))
+    layer = viewer.add_image(stack, name='stack', clim=(0.0, 3000.0), colormap='gray')

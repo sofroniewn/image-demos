@@ -16,4 +16,4 @@ with gui_qt():
     # create an empty viewer
     viewer = Viewer()
     layer = viewer.add_image(data, multichannel=False, name='AOLLSM_m4_560nm',
-                             clim_range=clim_range)
+                             clim_range=clim_range, colormap='magma')

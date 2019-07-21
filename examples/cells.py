@@ -18,26 +18,20 @@ with gui_qt():
     viewer = Viewer()
 
     # add and color the membrane
-    membrane = viewer.add_image(cells[:, :, 0], name='membrane', colormap='magenta', clim = [0.0, 255.0])
-    membrane.blending = 'additive'
+    membrane = viewer.add_image(cells[:, :, 0], name='membrane', colormap='magenta', clim = [0.0, 255.0], blending='additive')
 
     # add and color the cytoplasm
-    cytoplasm = viewer.add_image(cells[:, :, 1], name='cytoplasm', clim=[0.0, 255.0], colormap='yellow')
-    cytoplasm.blending = 'additive'
+    cytoplasm = viewer.add_image(cells[:, :, 1], name='cytoplasm', clim=[0.0, 255.0], colormap='yellow', blending='additive')
 
     # add and color the nucleus
-    nucleus = viewer.add_image(cells[:, :, 2], name='nucleus', clim=[0.0, 255.0], colormap='cyan')
-    nucleus.blending = 'additive'
+    nucleus = viewer.add_image(cells[:, :, 2], name='nucleus', clim=[0.0, 255.0], colormap='cyan', blending='additive')
 
     boundaries_layer = viewer.add_shapes(shapes, shape_type='polygon',
                                          face_color=face_colors,
-                                         name='boundaries')
-    boundaries_layer.visible = False
+                                         name='boundaries', visible=False)
 
 
-    centers_layer = viewer.add_points(centers, name='centers', size=20, edge_width=0, face_color='blue')
-    centers_layer.opacity = 0.75
-    centers_layer.visible = False
+    centers_layer = viewer.add_points(centers, name='nuclei centers', size=20, edge_width=0, face_color='blue', opacity=0.75, visible=False)
 
 # centers = centers_layer.data
 # np.savetxt('data/cells/cells_centers.csv', centers, delimiter=',')

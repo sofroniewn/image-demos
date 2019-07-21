@@ -15,7 +15,6 @@ with gui_qt():
 
     # add the brain
     brain_layer = viewer.add_image(brain, name='brain')
-    brain_layer.colormap = 'gray'
 
     # add the annotations
     annotation_layer = viewer.add_labels(annotation, name='annotation')

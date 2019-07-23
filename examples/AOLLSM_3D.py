@@ -4,13 +4,13 @@ Displays an 100GB zarr file of lattice light sheet data
 
 import numpy as np
 from napari import Viewer, gui_qt
-import dask.array as da
+import zarr
 
-file_name = 'data/LLSM/AOLLSM_m4_560nm.zarr'
-data = da.from_zarr(file_name).transpose((1, 0, 2, 3))[:, ::4, ::4, ::4]
+file_name = 'data/LLSM/AOLLSM_m4_560nm-3D.zarr'
+data = zarr.open(file_name, mode='r')
 print(data.shape)
 
-clim_range = [0, 150_000]
+clim_range = [0, 200_000]
 
 with gui_qt():
     # create an empty viewer

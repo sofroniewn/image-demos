@@ -27,3 +27,12 @@ with gui_qt():
                                      edge_color='red', symbol='ring', size=8,
                                      n_dimensional=True, name='spots')
     spots_layer.opacity = 0.5
+
+    @viewer.bind_key('s')
+    def swap(viewer):
+        """Swaps dims
+        """
+        dims = np.array(viewer.dims.order[-2:])
+        dims = (dims + 1) % 3
+        print('swapping', dims)
+        viewer.dims.swap(dims[0], dims[1])

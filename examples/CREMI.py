@@ -41,6 +41,14 @@ with gui_qt():
                                     edge_color='magenta', size=[10, 10, 4],
                                     n_dimensional=True, name='postsynaptic')
 
+    @viewer.bind_key('s')
+    def swap(viewer):
+        """Swaps dims
+        """
+        dims = np.array(viewer.dims.order[-2:])
+        dims = (dims + 1) % 3
+        print('swapping', dims)
+        viewer.dims.swap(dims[0], dims[1])
 
     # For profiling code
     # update_cmd = 'layer.refresh()'

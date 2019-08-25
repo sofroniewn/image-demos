@@ -2,19 +2,21 @@
 Displays an MRI volume
 """
 
-from skimage.io import imread
 from napari import Viewer, gui_qt
 import numpy as np
+import zarr
 
-mri = imread('data/MRI/mri.tif')
+file_name = 'data/MRI/synthesized_FLASH25.zarr'
+mri = zarr.open(file_name, mode='r')
 
+print(mri.shape)
 
 with gui_qt():
     # create an empty viewer
     viewer = Viewer()
 
     # add the mri
-    layer = viewer.add_image(mri, name='mri', colormap='gray')
+    layer = viewer.add_image(mri, name='mri', colormap='gray', clim_range=[0, 1])
 
     @viewer.bind_key('s')
     def swap(viewer):

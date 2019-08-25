@@ -32,7 +32,4 @@ with gui_qt():
     def swap(viewer):
         """Swaps dims
         """
-        dims = np.array(viewer.dims.order[-2:])
-        dims = (dims + 1) % 3
-        print('swapping', dims)
-        viewer.dims.swap(dims[0], dims[1])
+        viewer.dims.order = np.roll(viewer.dims.order, 1)

@@ -17,10 +17,10 @@ with gui_qt():
     viewer = Viewer()
 
     # add the raw images
-    raw_layer = viewer.add_image(raw, name='images', colormap='gray', clim=(140.0, 1300.0))
+    raw_layer = viewer.add_image(raw, name='images', colormap='gray', contrast_limits=(140.0, 1300.0))
 
 
-    decon_layer = viewer.add_image(deconvolved, name='deconvolved', colormap='gray', clim=(0.0, 0.2))
+    decon_layer = viewer.add_image(deconvolved, name='deconvolved', colormap='gray', contrast_limits=(0.0, 0.2))
     decon_layer.visible = False
 
     spots_layer = viewer.add_points(spots, face_color='red',

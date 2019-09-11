@@ -26,5 +26,5 @@ with gui_qt():
         else:
             col = colors[i % len(colors)]
         clim = [np.percentile(image, 1), np.percentile(image, 99)]
-        layer = viewer.add_image(np.flipud(image), name=names[i], colormap=col, clim=clim)
+        layer = viewer.add_image(np.flipud(image), name=names[i], colormap=col, contrast_limits=clim)
         layer.blending = 'additive'

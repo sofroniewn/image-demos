@@ -17,13 +17,14 @@ with np.load('data/vispy_volumes/stent.npz') as array:
 
 
 with napari.gui_qt():
-    viewer = napari.Viewer()
+    viewer = napari.Viewer(ndisplay=3)
 
     # # add an image first
     # viewer.add_image(stent)
 
     # add the volume
-    viewer.add_volume(stent, name='stent')
+    print(stent.shape)
+    viewer.add_image(stent, name='stent')
 
     # add an image second first
     #viewer.add_image(np.random.random((10, 100, 200)))

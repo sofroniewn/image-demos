@@ -15,9 +15,3 @@ with gui_qt():
 
     # add the mri
     layer = viewer.add_image(mri, name='mri', colormap='gray')
-
-    @viewer.bind_key('s')
-    def swap(viewer):
-        """Swaps dims
-        """
-        viewer.dims.order = np.roll(viewer.dims.order, 1)

@@ -22,4 +22,4 @@ with gui_qt():
     viewer = Viewer()
 
     # add the images
-    layer = viewer.add_pyramid(pyramid, name=slide_name, clim_range=[0, 255])
+    layer = viewer.add_pyramid(pyramid, name=slide_name, contrast_limits=[0, 255])

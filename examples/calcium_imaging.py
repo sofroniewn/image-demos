@@ -19,11 +19,11 @@ with gui_qt():
     viewer = Viewer()
 
     # add the timeseries
-    movie_layer = viewer.add_image(movie, name='timeseries', clim=(0.0, 600.0), colormap='gray')
+    movie_layer = viewer.add_image(movie, name='timeseries', contrast_limits=(0.0, 600.0), colormap='gray')
 
-    mean_layer = viewer.add_image(mean, name='mean', clim=(0.0, 600.0), colormap='gray', visible=False)
+    mean_layer = viewer.add_image(mean, name='mean', contrast_limits=(0.0, 600.0), colormap='gray', visible=False)
 
-    lc_layer = viewer.add_image(localcorr, name='localcorr', clim=(0.35, 1.0), colormap='gray', visible=False)
+    lc_layer = viewer.add_image(localcorr, name='localcorr', contrast_limits=(0.35, 1.0), colormap='gray', visible=False)
 
     centers_layer = viewer.add_points(centers, name='centers', edge_width=0, face_color='green', visible=False, opacity=0.5)
 

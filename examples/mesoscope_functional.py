@@ -20,11 +20,11 @@ with gui_qt():
     movie_layer = viewer.add_image(movie, name='timeseries', colormap='gray')
 
     # add the mean image
-    mean_layer = viewer.add_image(mean, name='mean', colormap='gray', clim=(0.0, 1000.0))
+    mean_layer = viewer.add_image(mean, name='mean', colormap='gray', contrast_limits=(0.0, 1000.0))
 
 
     # add the local correlation image
-    lc_layer = viewer.add_image(localcorr, name='localcorr', clim=(0.25, 0.75), colormap='gray')
+    lc_layer = viewer.add_image(localcorr, name='localcorr', contrast_limits=(0.25, 0.75), colormap='gray')
 
     # add the rsq image
     rsq_layer = viewer.add_image(rsq, name='rsq')

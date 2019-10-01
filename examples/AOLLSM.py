@@ -15,5 +15,5 @@ contrast_limits = [0, 150_000]
 with gui_qt():
     # create an empty viewer
     viewer = Viewer()
-    layer = viewer.add_image(data, multichannel=False, name='AOLLSM_m4_560nm',
+    layer = viewer.add_image(data, name='AOLLSM_m4_560nm',
                              contrast_limits=contrast_limits, colormap='magma')

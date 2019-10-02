@@ -25,7 +25,7 @@ rows, cols, dim = image.shape
 astronaut = data.astronaut().mean(axis=2) / 255
 base = np.tile(astronaut, (16, 16))
 pyramid = list(pyramid_gaussian(base, downscale=2, max_layer=5,
-                                multichannel=False))
+                                rgb=False))
 pyramid = [(255*p).astype('uint8') for p in pyramid]
 print('orig', [p.shape[:2] for p in pyramid])
 

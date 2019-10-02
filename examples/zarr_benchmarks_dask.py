@@ -68,7 +68,7 @@ with app_context():
 
                     # create an empty viewer
                     viewer = Viewer()
-                    layer = viewer.add_image(data, multichannel=False, name='zarr benchmarks',
+                    layer = viewer.add_image(data, rgb=False, name='zarr benchmarks',
                                              clim_range=clim_range)
 
                     # Start profiling - do one refresh without measuring to blank

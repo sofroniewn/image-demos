@@ -7,6 +7,8 @@ import napari
 
 img = np.random.random((1000, 1000))
 pyramid = list(pyramid_gaussian(img, multichannel=False))
+#pyramid = tuple(pyramid_gaussian(img, multichannel=False))
+#pyramid = np.asarray(tuple(pyramid_gaussian(img, multichannel=False)))
 
 print(img.shape, img.min(), img.max())
 print(len(pyramid))

@@ -17,20 +17,20 @@ with gui_qt():
     viewer = Viewer()
 
     ch1 = viewer.add_image(cells[:, 1, :, :], name='red spots',
-                           contrast_limits=(400.0, 520.0), colormap='red', blending='additive')
+                           contrast_limits=(400.0, 520.0), colormap='red', blending='additive', scale=[3, 1, 1])
 
-    ch2 = viewer.add_image(cells[:, 2, :, :], name='cells', colormap='green', contrast_limits=(410.0, 700.0), blending='additive')
+    ch2 = viewer.add_image(cells[:, 2, :, :], name='cells', colormap='green', contrast_limits=(410.0, 700.0), blending='additive',  scale=[3, 1, 1])
 
     ch3 = viewer.add_image(cells[:, 3, :, :], name='yellow spots',
-                           contrast_limits=(420.0, 500.0), colormap='yellow', blending='additive')
+                           contrast_limits=(420.0, 500.0), colormap='yellow', blending='additive',  scale=[3, 1, 1])
 
-    ch4 = viewer.add_image(cells[:, 4, :, :], name='DAPI', colormap='blue', contrast_limits=(500.0, 1300.0), blending='additive')
+    ch4 = viewer.add_image(cells[:, 4, :, :], name='DAPI', colormap='blue', contrast_limits=(500.0, 1300.0), blending='additive',  scale=[3, 1, 1])
 
     # add brightfield
-    brightfield = viewer.add_image(cells[:, 0, :, :], name='brightfield', colormap='gray')
+    brightfield = viewer.add_image(cells[:, 0, :, :], name='brightfield', colormap='gray',  scale=[3, 1, 1])
 
     #labels = np.zeros([cells.shape[i] for i in [0, 2, 3]])
-    labels_layer = viewer.add_labels(labels, name='annotations', n_dimensional=False)
+    labels_layer = viewer.add_labels(labels, name='annotations', n_dimensional=False,  scale=[3, 1, 1])
 
 # labels = labels_layer.data
 # imsave('data/allen_cell/labels.tif', labels.astype('uint32'), plugin='tifffile',

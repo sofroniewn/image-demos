@@ -19,4 +19,4 @@ with gui_qt():
 
     # add the images
     clims = [[np.percentile(img, 1), np.percentile(img, 99)] for img in images]
-    layer = viewer.add_multichannel(images, axis=0, name=names, contrast_limits=clims, blending='additive')
+    layer = viewer.add_image(images, channel_axis=0, name=names, contrast_limits=clims, blending='additive')

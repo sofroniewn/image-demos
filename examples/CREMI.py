@@ -25,10 +25,10 @@ with napari.gui_qt():
     # create an empty viewer
     viewer = napari.Viewer()
 
-    raw_layer = viewer.add_image(raw, name='raw', colormap='gray')
+    raw_layer = viewer.add_image(raw, name='raw', colormap='gray', scale=[10, 1, 1])
 
-    neuron_labels_layer = viewer.add_labels(neuron_labels, opacity=0.4,
-                                            name='neurons', num_colors=300)
+    # neuron_labels_layer = viewer.add_labels(neuron_labels, opacity=0.4,
+    #                                         name='neurons', num_colors=300)
 
     # cleft_labels_layer = viewer.add_labels(cleft_labels, opacity=0.4,
     #                                        name='clefts', num_colors=10)

@@ -1,6 +1,7 @@
 import numpy as np
 from glob import glob
 from skimage.io import imread
+import pandas as pd
 import zarr
 
 
@@ -9,6 +10,9 @@ image_file = 'ex6-2_CamA_ch1_CAM1_stack*_560nm_*Abs_000x_000y_000z_0000t_decon.t
 image_files = glob(image_path + image_file)
 n_files = len(image_files)
 print(image_files)
+df = pd.DataFrame(image_files)
+df.to_csv('./data/AOLLSM_order.csv')
+
 # file_name = '/Users/nicholassofroniew/Documents/DATA-imaging/ExM/AOLLSM_m4_560nm-6.zarr'
 # ### For one file
 # # shape = (768, 1024, 201)

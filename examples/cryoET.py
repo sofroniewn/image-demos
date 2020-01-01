@@ -39,19 +39,21 @@ print('surfaces ready')
 
 with napari.gui_qt():
     # create an empty viewer
-    viewer = napari.Viewer()
-
+    viewer = napari.Viewer(ndisplay=3)
+    viewer.dims.embedded = True
     # add tomogram
     viewer.add_image(path=base_path + 'Suitcase_tomogram.tif', name='tomogram')
 
     # add labels
-    viewer.add_labels(membrane, name='membrane')
+    #viewer.add_labels(membrane, name='membrane')
 
     # add protein centers
-    viewer.add_points(locations, face_color='red', edge_width=0, opacity=0.6, n_dimensional=True, name='protein centers')
+    #viewer.add_points(locations, face_color='red', edge_width=0, opacity=0.6, n_dimensional=True, name='protein centers')
 
     # add protein
     #viewer.add_surface((coords, faces, vals))
 
     # add proteins
     viewer.add_surface((all_coords, all_faces, all_vals), colormap='blue', name='proteins')
+
+    viewer.layers['tomogram'].dims.ndisplay = 2

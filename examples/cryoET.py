@@ -43,7 +43,7 @@ with napari.gui_qt():
     viewer.dims.embedded = True
     # add tomogram
     viewer.add_image(path=base_path + 'Suitcase_tomogram.tif', name='tomogram')
-
+    viewer.layers[0].data = -viewer.layers[0].data
     # add labels
     #viewer.add_labels(membrane, name='membrane')
 

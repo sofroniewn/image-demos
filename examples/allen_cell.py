@@ -27,10 +27,10 @@ with gui_qt():
     ch4 = viewer.add_image(cells[:, 4, :, :], name='DAPI', colormap='blue', contrast_limits=(500.0, 1300.0), blending='additive',  scale=[3, 1, 1])
 
     # add brightfield
-    brightfield = viewer.add_image(cells[:, 0, :, :], name='brightfield', colormap='gray',  scale=[3, 1, 1])
+    brightfield = viewer.add_image(-cells[:, 0, :, :], name='brightfield', colormap='gray',  scale=[3, 1, 1])
 
     #labels = np.zeros([cells.shape[i] for i in [0, 2, 3]])
-    labels_layer = viewer.add_labels(labels, name='annotations', n_dimensional=False,  scale=[3, 1, 1])
+    labels_layer = viewer.add_labels(labels, name='annotations', scale=[3, 1, 1])
 
 # labels = labels_layer.data
 # imsave('data/allen_cell/labels.tif', labels.astype('uint32'), plugin='tifffile',

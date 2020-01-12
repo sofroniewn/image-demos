@@ -12,7 +12,7 @@ cache = Cache(2e9)  # Leverage two gigabytes of memory
 cache.register()
 
 file_name = 'data/camelyon16/tumor_001.zarr'
-pyramid = [da.from_zarr(file_name + '/' + str(i)) for i in range(10)]
+#pyramid = [da.from_zarr(file_name + '/' + str(i)) for i in range(10)]
 
 tree = ET.parse('data/camelyon16/lesion_annotations/tumor_001.xml')
 root = tree.getroot()
@@ -21,7 +21,7 @@ shape_1 = np.array([[float(c.attrib['X']), float(c.attrib['Y'])] for c in root[0
 shape_2 = np.array([[float(c.attrib['X']), float(c.attrib['Y'])] for c in root[0][1][0]])
 tumors = [shape_1, shape_2]
 
-print([p.shape[:2] for p in pyramid])
+#print([p.shape[:2] for p in pyramid])
 
 
 with gui_qt():
@@ -29,7 +29,7 @@ with gui_qt():
     viewer = Viewer()
 
     # add the pyramid
-    layer = viewer.add_image(pyramid, name='slide', is_pyramid=True)
+    layer = viewer.add_image(path=file_name, name='slide', is_pyramid=True)
 
     tumor_layer = viewer.add_shapes(tumors, shape_type='polygon', edge_width=50,
                                     edge_color='blue', face_color=[0, 0, 1, 0.5],

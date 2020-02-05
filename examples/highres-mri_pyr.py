@@ -21,11 +21,5 @@ with gui_qt():
     viewer = Viewer()
 
     # add the mri
-    layer = viewer.add_pyramid(mri, name='mri', colormap='gray', contrast_limits=[0, 50])
+    layer = viewer.add_image(mri, name='mri', is_pyramid=True, colormap='gray', contrast_limits=[0, 50])
     viewer.dims.order = [0, 2, 1]
-
-    @viewer.bind_key('s')
-    def swap(viewer):
-        """Swaps dims
-        """
-        viewer.dims.order = np.roll(viewer.dims.order, 1)

@@ -13,4 +13,4 @@ with gui_qt():
     viewer = Viewer()
 
     # add the image
-    layer = viewer.add_image(stack, name='stack', clim=(0.0, 1500.0), colormap='gray')
+    layer = viewer.add_image(stack, name='stack', contrast_limits=(0.0, 1500.0), colormap='gray')

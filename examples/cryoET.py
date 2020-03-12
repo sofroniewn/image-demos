@@ -56,4 +56,4 @@ with napari.gui_qt():
     # add proteins
     viewer.add_surface((all_coords, all_faces, all_vals), colormap='blue', name='proteins')
 
-    viewer.layers['tomogram'].dims.ndisplay = 2
+    #viewer.layers['tomogram'].dims.ndisplay = 2

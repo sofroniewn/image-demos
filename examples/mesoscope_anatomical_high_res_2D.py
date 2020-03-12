@@ -14,4 +14,4 @@ with gui_qt():
     viewer = Viewer()
 
     # add the image
-    layer = viewer.add_image(image[0], name='plane', clim=(-72.0, 1300.0), colormap='gray')
+    layer = viewer.add_image(image[0], name='plane', contrast_limits=(-72.0, 1300.0), colormap='gray')

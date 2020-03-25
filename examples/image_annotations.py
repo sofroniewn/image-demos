@@ -29,57 +29,73 @@ with napari.gui_qt():
     viewer.layers['annotation'].events.highlight()
     viewer.reset_view()
 
-    @viewer.bind_key('0')
-    def set_0(viewer):
-        """Set annotation
-        """
-        key = 0
-        shapes = viewer.layers['annotation']
-        image_class = viewer.layers['blobs'].metadata['class']
-        index = viewer.dims.indices[0]
-        image_class[index] = key
-        shapes._data_view.update_edge_color(0, border_cols[key])
-        shapes.events.edge_color()
-        viewer.status = str(key)
 
-    @viewer.bind_key('1')
-    def set_1(viewer):
-        """Set annotation
-        """
-        key = 1
-        shapes = viewer.layers['annotation']
-        image_class = viewer.layers['blobs'].metadata['class']
-        index = viewer.dims.indices[0]
-        image_class[index] = key
-        shapes._data_view.update_edge_color(0, border_cols[key])
-        shapes.events.edge_color()
-        viewer.status = str(key)
+    for ind in ['0', '1', '2']:
+        @viewer.bind_key(ind)
+        def set(viewer, name=ind):
+            """Set annotation
+            """
+            key = int(ind)
+            shapes = viewer.layers['annotation']
+            image_class = viewer.layers['blobs'].metadata['class']
+            index = viewer.dims.indices[0]
+            image_class[index] = key
+            shapes._data_view.update_edge_color(0, border_cols[key])
+            shapes.events.edge_color()
+            viewer.status = str(key)
 
-    @viewer.bind_key('2')
-    def set_2(viewer):
-        """Set annotation
-        """
-        key = 2
-        shapes = viewer.layers['annotation']
-        image_class = viewer.layers['blobs'].metadata['class']
-        index = viewer.dims.indices[0]
-        image_class[index] = key
-        shapes._data_view.update_edge_color(0, border_cols[key])
-        shapes.events.edge_color()
-        viewer.status = str(key)
 
-    @viewer.bind_key('3')
-    def set_3(viewer):
-        """Set annotation
-        """
-        key = 3
-        shapes = viewer.layers['annotation']
-        image_class = viewer.layers['blobs'].metadata['class']
-        index = viewer.dims.indices[0]
-        image_class[index] = key
-        shapes._data_view.update_edge_color(0, border_cols[key])
-        shapes.events.edge_color()
-        viewer.status = str(key)
+    # @viewer.bind_key('0')
+    # def set_0(viewer):
+    #     """Set annotation
+    #     """
+    #     key = 0
+    #     shapes = viewer.layers['annotation']
+    #     image_class = viewer.layers['blobs'].metadata['class']
+    #     index = viewer.dims.indices[0]
+    #     image_class[index] = key
+    #     shapes._data_view.update_edge_color(0, border_cols[key])
+    #     shapes.events.edge_color()
+    #     viewer.status = str(key)
+    # 
+    # @viewer.bind_key('1')
+    # def set_1(viewer):
+    #     """Set annotation
+    #     """
+    #     key = 1
+    #     shapes = viewer.layers['annotation']
+    #     image_class = viewer.layers['blobs'].metadata['class']
+    #     index = viewer.dims.indices[0]
+    #     image_class[index] = key
+    #     shapes._data_view.update_edge_color(0, border_cols[key])
+    #     shapes.events.edge_color()
+    #     viewer.status = str(key)
+    # 
+    # @viewer.bind_key('2')
+    # def set_2(viewer):
+    #     """Set annotation
+    #     """
+    #     key = 2
+    #     shapes = viewer.layers['annotation']
+    #     image_class = viewer.layers['blobs'].metadata['class']
+    #     index = viewer.dims.indices[0]
+    #     image_class[index] = key
+    #     shapes._data_view.update_edge_color(0, border_cols[key])
+    #     shapes.events.edge_color()
+    #     viewer.status = str(key)
+    # 
+    # @viewer.bind_key('3')
+    # def set_3(viewer):
+    #     """Set annotation
+    #     """
+    #     key = 3
+    #     shapes = viewer.layers['annotation']
+    #     image_class = viewer.layers['blobs'].metadata['class']
+    #     index = viewer.dims.indices[0]
+    #     image_class[index] = key
+    #     shapes._data_view.update_edge_color(0, border_cols[key])
+    #     shapes.events.edge_color()
+    #     viewer.status = str(key)
 
     def recolor_box(event):
         index = viewer.dims.indices[0]

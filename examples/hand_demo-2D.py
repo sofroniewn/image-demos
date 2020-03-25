@@ -4,14 +4,14 @@ add_image APIs. When the window is closed it will print the coordinates of
 your shapes.
 """
 
-import numpy as np
 import napari
+import numpy as np
 import imageio
 from dask import delayed
 import dask.array as da
 from pandas import read_csv
 from dask.cache import Cache
-
+from dask_image.imread import imread as da_imread
 # cache = Cache(2e9)  # Leverage two gigabytes of memory
 # cache.register()
 
@@ -67,7 +67,7 @@ points = []
 lines = []
 for n in video_names:
     # movies.append(np_from_mov(folder + 'videos-raw/2019-08-02-vid01-' + n + '.MOV'))
-    movies.append(np_from_mov(folder + 'videos-raw/2019-08-02-vid01-' + n + '.MOV'))
+    movies.append(da_imread(folder + 'videos-raw/2019-08-02-vid01-' + n + '.MOV'))
     p = points_from_csv(folder + 'pose-2d/2019-08-02-vid01-' + n + '.csv')
     points.append(p)
     lines.append(lines_from_points(p[0]))

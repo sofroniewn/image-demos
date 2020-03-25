@@ -15,12 +15,14 @@ with napari.gui_qt():
     properties = {
         'class': np.array([]),
     }
+    default_properties = {'class': [0, 1, 2]}
 
     # define the color cycle for the face_color annotation
     face_color_cycle = ['red', 'blue', 'green', 'cyan', 'magenta', 'yellow']
 
     points_layer = viewer.add_points(
         properties=properties,
+        default_properties=default_properties,
         size=10,
         edge_width=1,
         edge_color='white',

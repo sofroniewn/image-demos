@@ -31,14 +31,13 @@ with napari.gui_qt():
     points_layer = viewer.add_points(
         properties=properties,
         default_properties=default_properties,
-        edge_color='label',
-        edge_color_cycle=COLOR_CYCLE,
-        symbol='o',
-        face_color='transparent',
-        edge_width=8,
+        face_color='label',
+        face_color_cycle=COLOR_CYCLE,
+        symbol='ring',
+        edge_width=0,
         size=12,
     )
-    points_layer.edge_color_mode = 'cycle'
+    points_layer.face_color_mode = 'cycle'
 
     # you can set 'choices' on an argument instead of creating an Enum if you want
     @magicgui(label={'choices': labels})

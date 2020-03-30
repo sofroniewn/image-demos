@@ -7,23 +7,7 @@ your shapes.
 import napari
 import numpy as np
 import imageio
-from dask import delayed
-import dask.array as da
 from pandas import read_csv
-from dask.cache import Cache
-from dask_image.imread import imread as da_imread
-# cache = Cache(2e9)  # Leverage two gigabytes of memory
-# cache.register()
-
-
-# import pdb; pdb.set_trace()
-
-
-def dask_from_mov(path):
-    vid = imageio.get_reader(path,  'ffmpeg')
-    shape = vid.get_meta_data()['size'][::-1] + (3,)
-    lazy_imread = delayed(vid.get_data)
-    return da.stack([da.from_delayed(lazy_imread(i), shape=shape, dtype=np.uint8) for i in range(vid.count_frames())])
 
 
 def np_from_mov(path):
@@ -66,10 +50,7 @@ movies = []
 points = []
 lines = []
 for n in video_names:
-    # for in memory loading use numpy reader
     movies.append(np_from_mov(folder + 'videos-raw/2019-08-02-vid01-' + n + '.MOV'))
-    # for lazy loading use dask reader
-    # movies.append(da_imread(folder + 'videos-raw/2019-08-02-vid01-' + n + '.MOV'))
     p = points_from_csv(folder + 'pose-2d/2019-08-02-vid01-' + n + '.csv')
     points.append(p)
     lines.append(lines_from_points(p[0]))

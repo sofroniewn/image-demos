@@ -22,5 +22,5 @@ with gui_qt():
     viewer = Viewer()
 
     # add the images
-    image_layer = viewer.add_image(images, name='nuceli', clim_range=(0, 255), colormap='gray')
+    image_layer = viewer.add_image(images, name='nuceli', colormap='gray')
     labels_layer = viewer.add_labels(labels, name='labels', opacity=0.5)

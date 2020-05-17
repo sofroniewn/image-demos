@@ -10,7 +10,7 @@ import imageio
 from dask import delayed
 import dask.array as da
 from pandas import read_csv
-from dask.cache import Cache
+#from dask.cache import Cache
 from dask_image.imread import imread as da_imread
 # cache = Cache(2e9)  # Leverage two gigabytes of memory
 # cache.register()
@@ -67,9 +67,9 @@ points = []
 lines = []
 for n in video_names:
     # for in memory loading use numpy reader
-    movies.append(np_from_mov(folder + 'videos-raw/2019-08-02-vid01-' + n + '.MOV'))
+    #movies.append(np_from_mov(folder + 'videos-raw/2019-08-02-vid01-' + n + '.MOV'))
     # for lazy loading use dask reader
-    # movies.append(da_imread(folder + 'videos-raw/2019-08-02-vid01-' + n + '.MOV'))
+    movies.append(da_imread(folder + 'videos-raw/2019-08-02-vid01-' + n + '.MOV'))
     p = points_from_csv(folder + 'pose-2d/2019-08-02-vid01-' + n + '.csv')
     points.append(p)
     lines.append(lines_from_points(p[0]))
@@ -81,7 +81,7 @@ base_colors = [[0, 1, 0], [1, 0, 1], [0, 1, 1], [1, 0, 0], [0, 0, 1]]
 digit_colors = base_colors[1:] + base_colors + base_colors + [[1, 1, 1]] + base_colors
 multipliers = np.array([3] * 4 + [1] * 5 + [2] * 5 + [1] + [4] * 5)
 colors = np.expand_dims((5 - multipliers) / 4, axis=1) * digit_colors
-print([m.shape for m in movies])
+#print([m.shape for m in movies])
 
 with napari.gui_qt():
     viewer = napari.Viewer(title='2019-08-02-vid01')
@@ -89,7 +89,8 @@ with napari.gui_qt():
         print('   adding ' + n)
         viewer.add_image(m, name=n)
         viewer.add_vectors(l, name=n+'-lines', edge_color='white', edge_width=4)
-        viewer.add_points(p[0], name=n+'-spots', properties=p[1], face_color='bodyparts', face_color_cycle=colors)
+        #print(p[1])
+        #viewer.add_points(p[0], name=n+'-spots', properties=p[1], face_color='bodyparts', face_color_cycle=colors)
         
     viewer.grid_view()
     viewer.grid_view(n_column=2, n_row=2, stride=3)

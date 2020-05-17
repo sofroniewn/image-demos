@@ -25,7 +25,7 @@ mov = np.array([im for im in vid.iter_data()])
 labels = ['whiskers-head', 'whiskers-tail', 'mouse-head', 'mouse-tail']
 
 with napari.gui_qt():
-    viewer = napari.view_image(mov, contrast_limits=[0, 256], is_pyramid=False, name='whiskers')
+    viewer = napari.view_image(mov, contrast_limits=[0, 256], is_multiscale=False, name='whiskers')
     properties = {'label': np.empty(0)}
     default_properties = {'label': np.array(labels)}
     points_layer = viewer.add_points(

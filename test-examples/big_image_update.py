@@ -6,7 +6,7 @@ with napari.gui_qt():
     # create the viewer with an image
     data = np.random.random((2, 10240, 10240))
     viewer = napari.Viewer()
-    layer = viewer.add_image(data[1], is_pyramid=False)
+    layer = viewer.add_image(data[1], is_multiscale=False)
 
     def layer_update(*, update_period, num_updates):
         # number of times to update

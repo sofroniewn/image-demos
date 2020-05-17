@@ -1,5 +1,5 @@
 """
-Displays an image pyramid
+Displays an image multiscale
 """
 
 from skimage import data
@@ -21,30 +21,30 @@ cache.register()
 image = data.astronaut()
 rows, cols, dim = image.shape
 
-# create pyramid from astronaut image
+# create multiscale from astronaut image
 astronaut = data.astronaut().mean(axis=2) / 255
 base = np.tile(astronaut, (16, 16))
-pyramid = list(pyramid_gaussian(base, downscale=2, max_layer=5,
+multiscale = list(pyramid_gaussian(base, downscale=2, max_layer=5,
                                 rgb=False))
-pyramid = [(255*p).astype('uint8') for p in pyramid]
-print('orig', [p.shape[:2] for p in pyramid])
+multiscale = [(255*p).astype('uint8') for p in multiscale]
+print('orig', [p.shape[:2] for p in multiscale])
 
-# # Convert pyramid to zarr
-# file_name = 'data/astro_pyramid.zarr'
+# # Convert multiscale to zarr
+# file_name = 'data/astro_multiscale.zarr'
 # # root = zarr.open_group(file_name, mode='a')
-# # for i in range(0, len(pyramid)):
-# #     print(i, len(pyramid))
-# #     shape = pyramid[i].shape
+# # for i in range(0, len(multiscale)):
+# #     print(i, len(multiscale))
+# #     shape = multiscale[i].shape
 # #     z1 = root.create_dataset(str(i), shape=shape, chunks=(300, 300),
 # #                              dtype='uint8')
-# #     z1[:] = pyramid[i]
+# #     z1[:] = multiscale[i]
 #
-# pyramid = [da.from_zarr(file_name + '/' + str(i)) for i in range(len(pyramid))]
-# print('zarr', [p.shape[:2] for p in pyramid])
+# multiscale = [da.from_zarr(file_name + '/' + str(i)) for i in range(len(multiscale))]
+# print('zarr', [p.shape[:2] for p in multiscale])
 
 def update(scale):
-    camera.rect = (-.1*pyramid[0].shape[1]*scale, 0, 1.2*pyramid[0].shape[1]*scale,
-                   pyramid[0].shape[0]*scale)
+    camera.rect = (-.1*multiscale[0].shape[1]*scale, 0, 1.2*multiscale[0].shape[1]*scale,
+                   multiscale[0].shape[0]*scale)
     layer.refresh()
 
 update_cmd = 'update(scale)'
@@ -57,12 +57,12 @@ with napari.gui_qt():
     # create the viewer
     viewer = napari.Viewer()
 
-    # add image pyramid
-    layer = viewer.add_pyramid(pyramid)
+    # add image multiscale
+    layer = viewer.add_multiscale(multiscale)
 
     camera = viewer.window.qt_viewer.view.camera
-    camera.rect = (-.1*pyramid[0].shape[1], 0, 1.2*pyramid[0].shape[1],
-                   pyramid[0].shape[0])
+    camera.rect = (-.1*multiscale[0].shape[1], 0, 1.2*multiscale[0].shape[1],
+                   multiscale[0].shape[0])
 
     # glbls = {'update': update, 'scale': 1}
     # result = timeit(update_cmd, number=1, globals=glbls)*1000

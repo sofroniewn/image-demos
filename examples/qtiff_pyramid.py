@@ -11,4 +11,4 @@ with tifffile.Timer('Loading pyramid:'):
 print('pyramid levels:', [p.shape for p in pyramid])
 
 with napari.gui_qt():
-    napari.view_image(pyramid, is_pyramid=True)
+    napari.view_image(pyramid, multiscale=True)

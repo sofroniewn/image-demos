@@ -1,4 +1,4 @@
-"""Test converting an image to a pyramid.
+"""Test converting an image to a multiscale.
 """
 
 import numpy as np
@@ -10,4 +10,4 @@ img = np.random.random((20_000, 20_000))
 print('shape: ', img.shape)
 
 with napari.gui_qt():
-    viewer = napari.view_image(img, ndisplay=2, is_pyramid=False)
+    viewer = napari.view_image(img, ndisplay=2, is_multiscale=False)

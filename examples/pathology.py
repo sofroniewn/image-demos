@@ -29,7 +29,7 @@ with gui_qt():
     viewer = Viewer()
 
     # add the pyramid
-    layer = viewer.add_image(path=file_name, name='slide', is_pyramid=True)
+    layer = viewer.open(file_name, layer_type='image', name='slide', multiscale=True)
 
     tumor_layer = viewer.add_shapes(tumors, shape_type='polygon', edge_width=50,
                                     edge_color='blue', face_color=[0, 0, 1, 0.5],

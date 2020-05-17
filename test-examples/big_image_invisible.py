@@ -1,4 +1,4 @@
-"""Test converting an image to a pyramid.
+"""Test converting an image to a multiscale.
 """
 
 import dask as da

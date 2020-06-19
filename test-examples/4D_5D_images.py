@@ -14,4 +14,5 @@ with napari.gui_qt():
 
     viewer = napari.view_image(np.random.random((2, 6, 30, 40)))
 
-    viewer.add_image(np.random.random((4, 1, 5, 30, 40)))
+    viewer.add_image(np.random.random((4, 5, 5, 30, 40)))
+    viewer.layers.remove_selected()

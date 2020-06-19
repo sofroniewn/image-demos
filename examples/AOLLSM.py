@@ -17,4 +17,4 @@ contrast_limits = [0, 150_000]
 
 with napari.gui_qt(startup_logo=True):
     viewer = napari.view_path(path=file_name, name='AOLLSM_m4_560nm', multiscale=False, scale=[1, 3, 1, 1],
-                contrast_limits=contrast_limits, colormap='magma', axis_labels='tzyx', title='local')
+                contrast_limits=contrast_limits, colormap='magma', axis_labels='tzyx', title='local', plugin='builtins')

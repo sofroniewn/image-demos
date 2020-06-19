@@ -15,4 +15,4 @@ with gui_qt():
     # create an empty viewer
     viewer = Viewer()
 
-    ch1 = viewer.add_multichannel(cells[:, :4], axis=1, scale=[3, 1, 1])
+    ch1 = viewer.add_image(cells[:, :4], channel_axis=1, scale=[3, 1, 1])

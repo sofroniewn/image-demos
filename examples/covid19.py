@@ -9,6 +9,12 @@ Displays covid19 data from omero
 # root = zarr.group(store=store)
 # resolutions = [root['/' + str(i)] for i in list(range(11))]
 
+# 
+# for i, r in enumerate(resolutions):
+#     if i == 0:
+#         print('res ', i, len(resolutions))
+#         r.to_zarr('data/covid19/9822152/' + str(i) + '.zarr')
+
 
 import napari
 import dask.array as da
@@ -16,10 +22,6 @@ import dask.array as da
 path = 'https://s3.embassy.ebi.ac.uk/idr/zarr/v0.1/9822151.zarr'
 resolutions = [da.from_zarr(path, component=str(i))[0, 0, 0] for i in list(range(11))]
 
-for i, r in enumerate(resolutions):
-    print('res ', i, len(resolutions))
-    r.to_zarr('data/covid19/9822151/' + str(i) + '.zarr')
-
-# with napari.gui_qt(startup_logo=True):
-#     viewer = napari.Viewer()
-#     viewer.add_image(resolutions)
+with napari.gui_qt(startup_logo=True):
+    viewer = napari.Viewer()
+    viewer.add_image(resolutions)

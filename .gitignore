@@ -3,6 +3,8 @@
 *.tiff
 *.csv
 *.npy
+data/
+data-njs/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

@@ -105,4 +105,4 @@ with napari.gui_qt():
         shapes._data_view.update_edge_color(0, border_cols[key])
         shapes.events.edge_color()
 
-    viewer.dims.events.axis.connect(recolor_box)
+    viewer.dims.point.events.changed.connect(recolor_box)

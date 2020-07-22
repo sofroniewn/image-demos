@@ -17,7 +17,7 @@ x, y = np.meshgrid(np.linspace(-1,1,6), np.linspace(-1,1,6))
 d = np.sqrt(x*x+y*y)
 sigma, mu = 2.0, 0.0
 psf = np.expand_dims(np.exp(-((d-mu)**2 / (2.0 * sigma**2))), axis=0)
-deconvolved = raw.map_blocks(lambda block: richardson_lucy(block, psf, clip=False))
+deconvolved = blurred.map_blocks(lambda block: richardson_lucy(block, psf, clip=False))
 
 
 with napari.gui_qt():

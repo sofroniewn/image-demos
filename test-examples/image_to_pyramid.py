@@ -2,16 +2,16 @@
 """
 
 import numpy as np
-from napari import Viewer, gui_qt
+import napari
 from skimage.transform import pyramid_gaussian
 
 image = np.random.random((2000, 2000))
-pyramid = list(pyramid_gaussian(image, downscale=2, multichannel=False))
+pyramid = list(pyramid_gaussian(image, downscale=2, multichannel=False))[:-4]
 
 print(image.shape)
 print(len(pyramid))
 print([p.shape for p in pyramid])
 
-with gui_qt():
-    viewer = Viewer()
+with napari.gui_qt():
+    viewer = napari.Viewer()
     viewer.add_image(pyramid, contrast_limits=[0, 1])

@@ -88,9 +88,9 @@ with napari.gui_qt():
     for n, m, p, l in zip(video_names, movies, points, lines):
         print('   adding ' + n)
         viewer.add_image(m, name=n)
-        viewer.add_vectors(l, name=n+'-lines', edge_color='white', edge_width=4)
+        viewer.add_vectors(l, name=n+'-lines', edge_color='red', edge_width=5)
         #print(p[1])
         #viewer.add_points(p[0], name=n+'-spots', properties=p[1], face_color='bodyparts', face_color_cycle=colors)
         
     viewer.grid_view()
-    viewer.grid_view(n_column=2, n_row=2, stride=3)
+    viewer.grid_view(n_column=2, n_row=2, stride=2)

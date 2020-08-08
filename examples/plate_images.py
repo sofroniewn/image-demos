@@ -20,5 +20,5 @@ with gui_qt():
     # add the image
     for i, im in enumerate(images):
         clim = [np.percentile(im, 1), np.percentile(im, 99)]
-        layer = viewer.add_image(im, name='plate ' + color_names[i], clim=clim, colormap=color_names[i])
+        layer = viewer.add_image(im, name='plate ' + color_names[i], contrast_limits=clim, colormap=color_names[i])
         layer.blending = 'additive'

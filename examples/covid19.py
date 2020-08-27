@@ -22,6 +22,6 @@ import dask.array as da
 path = 'https://s3.embassy.ebi.ac.uk/idr/zarr/v0.1/9822151.zarr'
 resolutions = [da.from_zarr(path, component=str(i))[0, 0, 0] for i in list(range(11))]
 
-with napari.gui_qt(startup_logo=True):
+with napari.gui_qt():
     viewer = napari.Viewer()
     viewer.add_image(resolutions)

@@ -4,17 +4,13 @@ Displays an 100GB zarr file of lattice light sheet data
 
 import numpy as np
 import napari
-#import dask.array as da
-# from dask.cache import Cache
-# 
-# cache = Cache(2e9)  # Leverage two gigabytes of memory
+import dask.array as da
 
 file_name = 'data/LLSM/AOLLSM_m4_560nm.zarr'
-# data = da.from_zarr(file_name)
-# print(data.shape)
+data = da.from_zarr(file_name)
 
-contrast_limits = [0, 150_000]
 
-with napari.gui_qt(startup_logo=True):
-    viewer = napari.view_path(path=file_name, name='AOLLSM_m4_560nm', multiscale=False, scale=[1, 3, 1, 1],
-                contrast_limits=contrast_limits, colormap='magma', axis_labels='tzyx', title='local', plugin='builtins')
+with napari.gui_qt():
+    viewer = napari.Viewer(axis_labels='tzyx')
+    viewer.add_image(data, name='AOLLSM_m4_560nm', multiscale=False, scale=[1, 3, 1, 1],
+                contrast_limits=[0, 150_000], colormap='magma')

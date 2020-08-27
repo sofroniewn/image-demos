@@ -1,10 +1,7 @@
-import numpy as np
-from skimage import data
-from skimage.util import random_noise
 import napari
+from dask import array as da
 
-blobs_raw = data.binary_blobs(length=64, n_dim=3, volume_fraction=0.1)
+img = da.random.randint(0, 100, size=(500, 1500, 1500), chunks=250, dtype=np.uint16)
 
 with napari.gui_qt():
-    viewer = napari.view_image(blobs_raw, scale = [1, 1, 1])
-    #viewer.dims.ndisplay = 3
+	v = napari.view_image(img, multiscale=False, contrast_limits=(0, 100), ndisplay=3)

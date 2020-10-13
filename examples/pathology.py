@@ -29,8 +29,16 @@ with gui_qt():
     viewer = Viewer()
 
     # add the pyramid
-    layer = viewer.open(file_name, layer_type='image', name='slide', multiscale=True)
+    #viewer.open(file_name, layer_type='image', name='slide', multiscale=True, scale=[10, 10], translate=[1000, 100])
+    #viewer.open(file_name, layer_type='image', name='slide', multiscale=True, scale=[10, 10])
+    viewer.open(file_name, layer_type='image', name='slide', multiscale=True)
 
-    tumor_layer = viewer.add_shapes(tumors, shape_type='polygon', edge_width=50,
-                                    edge_color='blue', face_color=[0, 0, 1, 0.5],
-                                    opacity=0.5, name='tumors')
+    layer = viewer.layers[0]
+
+    @layer.mouse_drag_callbacks.append
+    def update_intensity(layer, event):
+        print(layer.coordinates)
+
+    # tumor_layer = viewer.add_shapes(tumors, shape_type='polygon', edge_width=50,
+    #                                 edge_color='blue', face_color=[0, 0, 1, 0.5],
+    #                                 opacity=0.5, name='tumors')

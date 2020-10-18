@@ -6,7 +6,7 @@ import numpy as np
 
 
 fixed = rgb2gray(data.astronaut())
-tform = AffineTransform(scale=(0.9, 0.9), rotation=0.2, translation=(20, -10))
+tform = AffineTransform(scale=(0.9, 0.9), rotate=0.2, translation=(20, -10))
 moving = warp(fixed, tform.inverse, output_shape=fixed.shape)
 moving = rgb2gray(moving)
 

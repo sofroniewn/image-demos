@@ -8,7 +8,7 @@ from napari import Viewer, gui_qt
 from skimage.measure import label
 
 mean = imread('data/neurofinder/mean.tif')
-polygons = np.load('data/neurofinder/polygons.npy')
+#polygons = np.load('data/neurofinder/polygons.npy')
 mask = imread('data/neurofinder/mask.tif')
 
 

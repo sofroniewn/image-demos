@@ -9,7 +9,8 @@ from napari import Viewer, gui_qt
 
 movie = imread('data/neurofinder/timeseries.tif')
 mean = imread('data/neurofinder/mean.tif')
-# mask = imread('data/neurofinder/mask.tif')
+
+mask = imread('data/neurofinder/mask.tif')
 # localcorr = imread('data/neurofinder/localcorr.tif')
 # centers = np.loadtxt("data/neurofinder/centers.csv", delimiter=",")
 polygons = np.load('data/neurofinder/polygons_edit.npy', allow_pickle=True)
@@ -31,8 +32,8 @@ with gui_qt():
                                      edge_width=0, face_color='green',
                                      opacity=0.5, name='neurons', visible=False)
     #
-    # labels = label(mask)
-    # labels_layer = viewer.add_labels(labels, name='rois')
+    labels = label(mask)
+    labels_layer = viewer.add_labels(labels, name='rois')
 
 # polygons_edit = shapes_layer.data
 # np.save('data/neurofinder/polygons_edit.npy', polygons_edit)

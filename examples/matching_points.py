@@ -6,7 +6,7 @@ import numpy as np
 
 
 fixed = rgb2gray(data.astronaut())
-tform = AffineTransform(scale=(0.9, 0.9), rotate=0.2, translation=(20, -10))
+tform = AffineTransform(scale=(0.9, 0.9), rotation=0.2, translation=(20, -10))
 moving = warp(fixed, tform.inverse, output_shape=fixed.shape)
 moving = rgb2gray(moving)
 
@@ -16,7 +16,9 @@ with napari.gui_qt():
     viewer.add_points(face_color='blue', name='fixed pts', size=20, properties={'matches':[np.nan]})
     viewer.add_image(moving)
     viewer.add_points(face_color='red', name='moving pts', size=20, properties={'matches':[np.nan]})
-    viewer.grid_view(n_column=2, n_row=2, stride=2)
+    viewer.grid.stride = 2
+    viewer.grid.shape = (1, 2)
+    viewer.grid.enabled = True
 
     @viewer.bind_key('m')
     def match_points(viewer):        

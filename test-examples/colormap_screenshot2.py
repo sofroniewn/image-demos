@@ -9,7 +9,7 @@ with napari.gui_qt():
     viewer.add_image(data, channel_axis=0, blending='translucent')
     
     # enter grid view
-    viewer.grid_view()
+    viewer.grid.enabled = True
     
     
     # check screenshot

@@ -92,5 +92,5 @@ with napari.gui_qt():
         #print(p[1])
         #viewer.add_points(p[0], name=n+'-spots', properties=p[1], face_color='bodyparts', face_color_cycle=colors)
         
-    viewer.grid_view()
+    viewer.grid.enabled = True
     viewer.grid_view(n_column=2, n_row=2, stride=2)

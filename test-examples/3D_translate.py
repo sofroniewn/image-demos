@@ -66,8 +66,8 @@ with napari.gui_qt():
     # # nsteps 32, 64, 64
     # # stepsize 2, 1, 1
 
-    print(viewer.layers._extent_world)
-    print(viewer.layers._step_size)
+    print(viewer.layers.extent.world)
+    print(viewer.layers.extent.step)
     print(viewer.dims.nsteps)
 
     viewer.reset_view()

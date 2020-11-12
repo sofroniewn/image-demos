@@ -25,6 +25,6 @@ with napari.gui_qt():
     # add the volume
     print(stent.shape)
     viewer.add_image(stent, name='stent')
-
+    viewer.dims.axis_labels = ['z', 'y', 'x']
     # add an image second first
     #viewer.add_image(np.random.random((10, 100, 200)))

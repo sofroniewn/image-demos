@@ -30,4 +30,4 @@ with gui_qt():
     #bee_layer = viewer.add_image(bees, name='bees', contrast_limits=[0, 255])
 
     #bee_layer.translate = [offset, 0]
-    #viewer.window.qt_viewer.view.camera.set_range((0, 2*offset), (0, offset))
+    #viewer.window._qt_viewer.view.camera.set_range((0, 2*offset), (0, offset))

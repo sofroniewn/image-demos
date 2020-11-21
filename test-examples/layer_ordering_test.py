@@ -26,7 +26,7 @@ import numpy as np
 
 with napari.gui_qt():
     viewer = napari.Viewer()
-    vis = viewer.window.qt_viewer.layer_to_visual
+    vis = viewer.window._qt_viewer.layer_to_visual
     image = np.random.rand(10,10)
     
     viewer.add_image(image, colormap='red', name='red')

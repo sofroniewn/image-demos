@@ -60,7 +60,7 @@ with napari.gui_qt():
     # add image multiscale
     layer = viewer.add_multiscale(multiscale)
 
-    camera = viewer.window.qt_viewer.view.camera
+    camera = viewer.window._qt_viewer.view.camera
     camera.rect = (-.1*multiscale[0].shape[1], 0, 1.2*multiscale[0].shape[1],
                    multiscale[0].shape[0])
 

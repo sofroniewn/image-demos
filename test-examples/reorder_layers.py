@@ -23,9 +23,9 @@ with napari.gui_qt():
     # viewer.layers[0].selected=False
     Event = collections.namedtuple('Event', field_names=['pos'])
     event = Event(pos=lambda : QPoint(10, 10))
-    viewer.window.qt_viewer.layers.mousePressEvent(event)
-    viewer.window.qt_viewer.layers.mouseReleaseEvent(event)
-    #viewer.window.qt_viewer.update()
+    viewer.window._qt_viewer.layers.mousePressEvent(event)
+    viewer.window._qt_viewer.layers.mouseReleaseEvent(event)
+    #viewer.window._qt_viewer.update()
 
     viewer.window.show()
     viewer.layers[0].visible=False

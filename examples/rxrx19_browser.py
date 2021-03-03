@@ -62,7 +62,7 @@ with napari.gui_qt():
     viewer = napari.Viewer()
 
     # instantiate the widget
-    gui = segmentation.Gui()
+    gui = segmentation()
 
     list_widget = QListWidget()
     for n in names:
@@ -73,7 +73,7 @@ with napari.gui_qt():
     viewer.window.add_dock_widget([list_widget, gui], area='right')
     
     # keep the dropdown menus in the gui in sync with the layer model
-    viewer.layers.events.changed.connect(lambda x: gui.refresh_choices())
+    viewer.layers.events.connect(lambda x: gui.refresh_choices())
 
     gui.refresh_choices()
 

@@ -18,7 +18,7 @@ with napari.gui_qt():
     viewer.window.add_dock_widget(gui)
 
     # keep the dropdown menus in the gui in sync with the layer model
-    viewer.layers.events.changed.connect(lambda x: gui.refresh_choices())
+    viewer.layers.events.connect(lambda x: gui.refresh_choices())
 
     gui.refresh_choices()
 

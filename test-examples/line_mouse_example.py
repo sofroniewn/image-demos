@@ -15,11 +15,6 @@ def profile_lines(image, shape_layer):
         profile_data.append(
             measure.profile_line(image, line[0], line[1]).mean()
         )
-    msg = ('profile means: ['
-            + ', '.join([f'{d:.2f}' for d in profile_data])
-            + ']')
-    shape_layer.status = msg
-
 
 
 with napari.gui_qt():

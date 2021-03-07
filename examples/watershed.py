@@ -72,19 +72,19 @@ with gui_qt():
         viewer.layers['output'].data = labels
 
     # add the raw image
-    viewer.add_image(image, name='raw', colormap='gray')
+    viewer.add_image(image, name='raw')
 
     # add the input image
-    viewer.add_image(blobs.astype('float'), name='input', colormap='gray')
+    viewer.add_image(blobs.astype('float'), name='input', visible=False)
 
     # add the distance image
-    viewer.add_image(distance, name='distance', colormap='gray')
+    viewer.add_image(distance, name='distance', colormap='gray', visible=False)
 
     # add the resulting labels image
     viewer.add_labels(labels, name='output')
 
-    # add the ground truth as a labels image
-    viewer.add_labels(gt, name='gt')
+    # # add the ground truth as a labels image
+    # viewer.add_labels(gt, name='gt')
 
     # add the markers
     viewer.add_points(local_maxi, face_color='blue', size=3, name='markers')

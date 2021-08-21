@@ -1,5 +1,5 @@
 """
-Analysis on an image pyramid of pathology slide
+SHOW A SINGLE LAYER IMAGE!!!!!
 """
 
 import numpy as np
@@ -14,10 +14,10 @@ from typing_extensions import Annotated
 file_name = 'data/camelyon16/tumor_001.zarr'
 pyramid = [da.from_zarr(file_name + '/' + str(i)) for i in range(10)]
 
-with napari.gui_qt():
-    # create an empty viewer
-    viewer = napari.Viewer()
+# create an empty viewer
+viewer = napari.Viewer()
 
-    # add the pyramid
-    viewer.add_image(pyramid[0], name='slide', multiscale=False)
-    viewer.camera.zoom = 0.5
+# add the pyramid
+viewer.add_image(pyramid[0], name='slide', multiscale=False)
+viewer.camera.zoom = 0.5
+napari.run()

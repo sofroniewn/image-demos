@@ -2,6 +2,7 @@ import numpy as np
 import napari
 
 
-with napari.gui_qt():
-    viewer = napari.Viewer()
-    viewer.add_image(np.ones((1000, 1)))
+viewer = napari.Viewer()
+viewer.open_sample(plugin='scikit-image', sample='cell')
+viewer.dims.ndisplay = 1
+napari.run()

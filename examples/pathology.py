@@ -6,7 +6,7 @@ import numpy as np
 import dask.array as da
 from dask.cache import Cache
 import xml.etree.ElementTree as ET
-from napari import Viewer, gui_qt
+import napari
 
 cache = Cache(2e9)  # Leverage two gigabytes of memory
 cache.register()
@@ -24,17 +24,18 @@ tumors = [shape_1, shape_2]
 #print([p.shape[:2] for p in pyramid])
 
 
-with gui_qt():
-    # create an empty viewer
-    viewer = Viewer()
+# create an empty viewer
+viewer = napari.Viewer()
 
-    # add the pyramid
-    #viewer.open(file_name, layer_type='image', name='slide', multiscale=True, scale=[10, 10], translate=[1000, 100])
-    #viewer.open(file_name, layer_type='image', name='slide', multiscale=True, scale=[10, 10])
-    viewer.open(file_name, layer_type='image', name='H&E stained lymph node', multiscale=True)
+# add the pyramid
+#viewer.open(file_name, layer_type='image', name='slide', multiscale=True, scale=[10, 10], translate=[1000, 100])
+#viewer.open(file_name, layer_type='image', name='slide', multiscale=True, scale=[10, 10])
+viewer.open(file_name, layer_type='image', name='H&E stained lymph node', multiscale=True)
 
-    layer = viewer.layers[0]
+layer = viewer.layers[0]
 
-    tumor_layer = viewer.add_shapes(tumors, shape_type='polygon', edge_width=50,
-                                    edge_color='blue', face_color=[0, 0, 1, 0.5],
-                                    opacity=0.5, name='Tumors')
+tumor_layer = viewer.add_shapes(tumors, shape_type='polygon', edge_width=50,
+                                edge_color='blue', face_color=[0, 0, 1, 0.5],
+                                opacity=0.5, name='Tumors')
+
+napari.run()

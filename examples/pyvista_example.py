@@ -20,12 +20,13 @@ values = np.dot(normals, [1, -1, 1])
 print(vertices.shape, faces.shape, values.shape)
 # (1335, 3) (2452, 3) (1335,)
 
-with napari.gui_qt():
-    # create an empty viewer
-    viewer = napari.Viewer()
+# create an empty viewer
+viewer = napari.Viewer()
 
-    # add the surface
-    viewer.add_surface((vertices, faces, values))
+# add the surface
+viewer.add_surface((vertices, faces, values))
 
-    # turn on 3D rendering
-    viewer.dims.ndisplay = 3
+# turn on 3D rendering
+viewer.dims.ndisplay = 3
+
+napari.run()

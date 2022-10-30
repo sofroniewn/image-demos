@@ -37,22 +37,22 @@ all_faces = np.concatenate(all_faces, axis=0)
 all_vals = np.random.random(len(all_coords))
 print('surfaces ready')
 
-with napari.gui_qt():
-    # create an empty viewer
-    viewer = napari.Viewer(ndisplay=3)
-    # add tomogram
-    # viewer.open(base_path + 'Suitcase_tomogram.tif')
-    # viewer.layers[0].data = -viewer.layers[0].data
-    # # add labels
-    #viewer.add_labels(membrane, name='membrane')
+# create an empty viewer
+viewer = napari.Viewer(ndisplay=3)
+# add tomogram
+viewer.open(base_path + 'Suitcase_tomogram.tif')
+viewer.layers[0].data = -viewer.layers[0].data
+# add labels
+viewer.add_labels(membrane, name='membrane')
 
-    # add protein centers
-    #viewer.add_points(locations, face_color='red', edge_width=0, opacity=0.6, n_dimensional=True, name='protein centers')
+# add protein centers
+viewer.add_points(locations, face_color='red', edge_width=0, opacity=0.6, n_dimensional=True, name='protein centers')
 
-    # add protein
-    #viewer.add_surface((coords, faces, vals))
+# # add protein
+# viewer.add_surface((coords, faces, vals))
 
-    # add proteins
-    viewer.add_surface((all_coords, all_faces), colormap='blue', name='proteins')
+# add proteins
+viewer.add_surface((all_coords, all_faces), colormap='blue', name='proteins')
 
-    #viewer.layers['tomogram'].dims.ndisplay = 2
+#viewer.layers['tomogram'].dims.ndisplay = 2
+napari.run()
